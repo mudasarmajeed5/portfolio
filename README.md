@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mudassar’s Portfolio
 
-## Getting Started
+A GNOME-inspired portfolio desktop with a system bar, application dock, movable windows, wallpaper themes, project folders, and Snake.
 
-First, run the development server:
+## Development
 
-```bash
+Use npm and the committed `package-lock.json`:
+
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. Run `npm run lint` and `npm run build` before submitting changes. `npm start` serves a production build. The build downloads the configured Geist fonts from Google Fonts.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding projects
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.md` file in `content/projects/`. Files are discovered automatically at build time, sorted by filename, and displayed as folders in the Projects app.
 
-## Learn More
+```md
+---
+title: My Project
+category: Web application
+technologies: Next.js · TypeScript
+image: /projects/my-project/cover.jpg
+---
+A short description of the project.
 
-To learn more about Next.js, take a look at the following resources:
+More details about the work and its results.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![A screen from the project](/projects/my-project/screen.jpg)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Metadata uses one scalar value per line. `title`, `category`, `technologies`, `image`, and `description` are supported. The first paragraph supplies the description when it is omitted. Body paragraphs and standalone Markdown images appear inside the opened folder.
 
-## Deploy on Vercel
+Place local images in `public/projects/my-project/`. A missing cover or body image shows a styled placeholder. Adding the referenced file makes it appear on the next page load after deployment; no component changes are needed. Rebuild and deploy after changing Markdown content or adding assets.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Themes and game
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Launch apps from the desktop, dock, or searchable Activities view. Windows support dragging, minimizing, maximizing, and closing; on phones they fill the workspace above the dock. Three themes apply across the portfolio. The selected theme and Snake best score are saved locally on the visitor’s device. Snake uses a canvas animation loop with interpolated movement and queued input. It accepts arrows/WASD while focused, swipe or directional buttons on phones, Space to pause, and has pause/resume and restart controls. It pauses when its window is inactive or the page is hidden.
