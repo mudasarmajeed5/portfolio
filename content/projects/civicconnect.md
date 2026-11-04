@@ -1,7 +1,9 @@
 ---
 title: CivicConnect
-category: Civic platform
-description: Multi-tenant civic services with role-based dashboards for citizens and field teams.
-technologies: React · Node.js · TypeScript
+category: Civic platform · Sep 2025 – Dec 2025
+description: A multi-tenant civic platform with role-based authentication and dashboards for citizens, field staff, supervisors, and administrators.
+technologies: Node.js · Express.js · React · TypeScript · REST APIs
 ---
-A civic platform recognized as second runner-up among teams from more than 25 universities.
+A multi-tenant civic platform with role-based authentication and dashboards for citizens, field staff, supervisors, and administrators.
+
+- Secured 2nd Runner-Up among teams from more than 25 universities.

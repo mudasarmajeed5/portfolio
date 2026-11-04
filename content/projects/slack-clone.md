@@ -1,8 +1,8 @@
 ---
 title: Slack Clone
 category: Collaboration
-technologies: TypeScript · Convex · OAuth
+technologies: TypeScript · Convex
 ---
-A collaboration platform with real-time messaging, channels, and direct messages.
+A full-stack collaboration platform with real-time messaging, channels, and direct messages.
 
-Google and GitHub OAuth support secure sign-in across the application.
+- Implemented Google and GitHub OAuth sign-in.

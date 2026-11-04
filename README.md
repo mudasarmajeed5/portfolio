@@ -37,4 +37,10 @@ Place local images in `public/projects/my-project/`. A missing cover or body ima
 
 ## Themes and game
 
-Launch apps from the desktop, dock, or searchable Activities view. Windows support dragging, minimizing, maximizing, and closing; on phones they fill the workspace above the dock. Three themes apply across the portfolio. The selected theme and Snake best score are saved locally on the visitor’s device. Snake uses a canvas animation loop with interpolated movement and queued input. It accepts arrows/WASD while focused, swipe or directional buttons on phones, Space to pause, and has pause/resume and restart controls. It pauses when its window is inactive or the page is hidden.
+Launch apps from the desktop, dock, or searchable Activities view. The Files window browses Home, About, Projects, Experience, Skills, and Contact in place, with breadcrumbs and mobile location tabs. Windows support dragging, minimizing, maximizing, and closing; on phones they fill the workspace above the dock. Three themes apply across the portfolio. The selected theme and Snake best score are saved locally on the visitor’s device. Snake uses a canvas animation loop with interpolated movement and queued input. It accepts arrows/WASD while focused, swipe or directional buttons on phones, Space to pause, and has pause/resume and restart controls. It pauses when its window is inactive or the page is hidden.
+
+## Preview, animation, and audio
+
+Use the **Full page preview** link inside Files to read the portfolio at `/preview`, without desktop windows. The preview and desktop share project content, experience, and skills.
+
+The lock screen slides away to reveal the desktop and honors reduced-motion preferences. Tap, lock, and unlock sounds are generated locally through Web Audio; no MP3 downloads are needed. Mute sounds from the top bar or Appearance. The preference is stored on the visitor’s device.

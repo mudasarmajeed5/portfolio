@@ -1,8 +1,9 @@
 ---
 title: GCR Pro
 category: Education
-technologies: Next.js · TypeScript · Google APIs
+technologies: Next.js · TypeScript
 ---
-Integrated 21 Google APIs, including Google Classroom services, in a modular application.
+Integrated 21 Google APIs, including Google Classroom services.
 
-Parallel requests and caching improve API performance while keeping backend logic organized and maintainable.
+- Optimized performance through parallel requests and caching.
+- Designed modular backend architecture.
