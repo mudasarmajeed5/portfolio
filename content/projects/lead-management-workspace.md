@@ -1,21 +1,22 @@
 ---
-title: Lead Management Workspace
-category: CRM · Customer operations
-description: A customer workspace connecting lead ownership, response deadlines, WhatsApp conversations, payments, and appointments.
-technologies: WhatsApp · Stripe Checkout · Google Calendar
+title: LeadPulse
+category: Lead management software
+description: Keeps every lead accountable, from first WhatsApp message to follow-up, payment, and appointment.
+technologies: Next.js · TypeScript · PostgreSQL · Drizzle ORM · Better Auth · Inngest
 ---
-A customer workspace connecting lead ownership, response deadlines, WhatsApp conversations, payments, and appointments.
+## My contribution
 
-## Accountable lead routing
+Full-stack development on a multi-tenant CRM, connecting lead ownership, automated follow-up, and customer integrations.
 
-- Leads arrive from a public web form or WhatsApp, with the source label always visible.
-- Assignment rules select exactly one accountable owner from available employees.
-- The assignee receives a toast and bell alert, and the lead appears at the top of My leads with an acknowledgement countdown.
-- Acknowledge stops the clock. Missed deadlines automatically escalate the lead and alert the escalated owner by email; manual reassignments remain distinct.
-- Overdue leads enter a recovery queue with a reason so a manager can reassign them to a specific person.
+## What it does
 
-## From conversation to appointment
+- Assigns one accountable owner per lead, with acknowledgement deadlines and automatic escalation.
+- Provides configurable pipelines, customer records, absence reassignment, and a recovery queue.
+- Connects WhatsApp, Google Calendar, email alerts, and Stripe Checkout in test mode.
 
-- Reply on WhatsApp from the lead or contact; the conversation stays attached to the customer record.
-- Create a Stripe Checkout payment request from an opportunity, with its visible value prefilled, then copy or send the payment link.
-- Choose a free slot from the Google Calendar busy view and book a confirmed customer appointment.
+## Engineering highlights
+
+- Uses PostgreSQL transactions and assignment versions to keep lead routing and escalation consistent.
+- Runs durable Inngest timers with a scheduled backstop for missed deadlines.
+- Scopes records to workspaces and permissions; records changes in an append-only audit log.
+- Verifies Stripe webhooks and deduplicates events inside a transaction before updating payment state.

@@ -1672,3 +1672,226 @@ button:hover:not(:disabled) {
     padding: 11px;
   }
 }
+
+/* Portfolio summaries keep the file-manager identity, with useful content at a glance. */
+.project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 20px 28px 30px;
+}
+.project-grid .file-folder {
+  align-items: flex-start;
+  text-align: left;
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--panel) 55%, transparent);
+  padding: 20px;
+  gap: 9px;
+}
+.project-grid .folder-art {
+  transform: scale(0.7);
+  transform-origin: left center;
+  height: 48px;
+}
+.project-grid .file-folder strong {
+  font-size: 17px;
+}
+.project-grid .file-folder small {
+  font-size: 11px;
+  color: var(--accent);
+}
+.project-grid p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+.card-tech {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: auto;
+  padding-top: 8px;
+}
+.card-open {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--accent);
+  padding-top: 4px;
+}
+.experience-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(170px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.experience-summary {
+  margin-top: 35px;
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.experience-fact {
+  display: grid;
+  gap: 7px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.experience-fact strong {
+  font-size: 15px;
+}
+.experience-fact span,
+.experience-summary p {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.experience-summary h2 {
+  font-size: 13px;
+  margin: 23px 0 18px;
+}
+.focus-flow {
+  border-left: 1px solid var(--accent);
+  padding-left: 16px;
+}
+.focus-flow > div {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  padding-bottom: 22px;
+}
+.focus-flow > div::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: -20px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.focus-flow strong {
+  font-size: 12px;
+}
+.focus-flow span {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.job ul {
+  padding-left: 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.job li + li {
+  margin-top: 8px;
+}
+.desktop-lock-handle {
+  position: absolute;
+  z-index: 12;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 23px;
+  padding: 3px 18px;
+  background: #18201cdd;
+  color: #e3eee8;
+  border-radius: 20px;
+  font-size: 10px;
+  touch-action: none;
+  user-select: none;
+}
+.lock-screen {
+  touch-action: none;
+}
+.lock-read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: white;
+  margin-top: 20px;
+}
+.preview-contact {
+  display: inline-flex;
+  padding: 14px 18px;
+  font-size: 13px;
+}
+.project-detail {
+  max-width: 950px;
+  margin-inline: auto;
+}
+@media (max-width: 1050px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .experience-summary {
+    margin: 10px 0 20px;
+  }
+}
+@media (max-width: 759px) {
+  .project-grid {
+    padding: 16px;
+    gap: 12px;
+  }
+  .project-grid .file-folder {
+    padding: 16px;
+  }
+  .project-grid .file-folder strong {
+    font-size: 16px;
+  }
+  .desktop-lock-handle {
+    bottom: 0;
+    min-height: 26px;
+    font-size: 9px;
+  }
+  .dock {
+    bottom: max(30px, env(safe-area-inset-bottom));
+  }
+  .windows-layer {
+    bottom: 100px;
+  }
+  .lock-read-link {
+    font-size: 11px;
+  }
+}
+@media (max-width: 480px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-height: 620px) {
+  .lock-screen {
+    padding: 16px;
+  }
+  .lock-time {
+    font-size: 60px;
+  }
+  .lock-screen > p {
+    margin: 8px 0 12px;
+  }
+  .lock-profile {
+    padding: 8px 20px;
+  }
+  .lock-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 25px;
+    margin-bottom: 0;
+  }
+  .lock-profile .unlock-prompt {
+    margin-top: 10px;
+  }
+  .lock-read-link {
+    margin-top: 10px;
+  }
+}

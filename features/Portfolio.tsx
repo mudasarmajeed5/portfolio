@@ -36,6 +36,7 @@ import {
   X,
 } from "lucide-react";
 import Snake from "./Snake";
+import { useSwipeAction } from "./hooks/useSwipeAction";
 
 type AppId =
   | "about"
@@ -68,6 +69,7 @@ function Clock({ large = false }: { large?: boolean }) {
   const [date, setDate] = useState<Date | null>(null);
   useEffect(() => {
     const update = () => setDate(new Date());
+    update();
     const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
   }, []);
@@ -232,7 +234,17 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("mint");
   const [selected, setSelected] = useState<Project | null>(null);
-  const touch = useRef(0);
+  const lock = () => {
+    playSound("lock");
+    setUnlocked(false);
+    setOverview(false);
+  };
+  const lockGesture = useSwipeAction(lock);
+  const unlockGesture = useSwipeAction(unlock);
+  const contentRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0 });
+  }, [fileSection, selected]);
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
       try {
@@ -338,12 +350,12 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                 </button>
               ))}
             <div className="sidebar-note">
-              Built with curiosity.
+              TypeScript · Node.js
               <br />
-              Made to be explored.
+              Next.js · PostgreSQL
             </div>
           </aside>
-          <div className="file-content">
+          <div className="file-content" ref={contentRef}>
             <div className="file-toolbar">
               <button
                 aria-label="Go back"
@@ -382,10 +394,10 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                 href={`/preview#${selected?.slug || fileSection}`}
                 target="_blank"
                 rel="noreferrer"
-                title="Full page preview"
+                title="Read as a page"
               >
                 <ScanEye size={17} />
-                <span>Full page preview</span>
+                <span>Read as a page</span>
               </Link>
             </div>
             <nav className="mobile-file-locations" aria-label="File locations">
@@ -453,11 +465,13 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                 <div className="folder-heading">
                   <div>
                     <h1>Projects</h1>
-                    <p>A collection of things I’ve built.</p>
+                    <p>
+                      Business tools, connected APIs, and real-time products.
+                    </p>
                   </div>
-                  <span>{projects.length} folders</span>
+                  <span>{projects.length} projects</span>
                 </div>
-                <div className="folder-grid">
+                <div className="folder-grid project-grid">
                   {projects.map((p) => (
                     <button
                       className="file-folder"
@@ -470,6 +484,13 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                       </span>
                       <strong>{p.title}</strong>
                       <small>{p.kind}</small>
+                      <p>{p.text}</p>
+                      <span className="card-tech">
+                        {p.tech.split("·").slice(0, 3).join(" · ")}
+                      </span>
+                      <span className="card-open">
+                        View project <ChevronRight size={14} />
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -484,21 +505,21 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           <div className="avatar-mark">
             m<span>.</span>
           </div>
-          <span className="eyebrow">WELCOME TO MY DESKTOP</span>
+          <span className="eyebrow">FULL-STACK & BACKEND DEVELOPMENT</span>
           <h1>
-            Mudassar Majeed<span>Software engineer & curious builder.</span>
+            Mudassar Majeed<span>Full-stack & backend developer.</span>
           </h1>
           <p>
-            I build thoughtful full-stack products, scalable backends, and
-            useful AI experiences. Make yourself at home — my work is just a
-            folder away.
+            I build business software with TypeScript, Node.js, Next.js, and
+            PostgreSQL — from authenticated APIs and background jobs to the
+            interfaces people use every day.
           </p>
           <div className="welcome-actions">
             <button className="primary" onClick={() => launch("projects")}>
               <Folder size={17} /> Explore my projects
             </button>
             <Link className="preview-link" href="/preview" target="_blank">
-              <ScanEye size={16} /> Full page preview
+              <ScanEye size={16} /> Read as a page
             </Link>
             <button onClick={() => launch("contact")}>
               Let’s talk <ChevronRight size={16} />
@@ -611,25 +632,23 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
         className="lock-screen"
         aria-hidden={unlocked}
         inert={unlocked}
-        onTouchStart={(e) => {
-          touch.current = e.touches[0].clientY;
-        }}
-        onTouchEnd={(e) => {
-          if (touch.current - e.changedTouches[0].clientY > 75) unlock();
-        }}
+        {...unlockGesture}
       >
         <div className="lock-time">
           <Clock large />
         </div>
-        <p>Your next idea starts here.</p>
+        <p>Business software · APIs · AI workflows</p>
         <button className="lock-profile" data-sound="unlock" onClick={unlock}>
           <span className="lock-avatar">m.</span>
           <strong>Mudassar Majeed</strong>
-          <span>Software engineer</span>
+          <span>Full-stack & backend developer</span>
           <span className="unlock-prompt">
-            <ArrowUp size={17} /> Swipe up or press Enter
+            <ArrowUp size={17} /> Click, swipe up, or press Enter
           </span>
         </button>
+        <Link className="lock-read-link" href="/preview">
+          Browse portfolio as a page <ChevronRight size={15} />
+        </Link>
       </section>
       <div
         className={`desktop-session ${hasMaximizedWindow ? "has-maximized-window" : ""}`}
@@ -711,9 +730,15 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             <Grid3X3 size={26} />
           </button>
         </nav>
-        <span className="desktop-credit">
-          A little desktop. A lot of possibilities.
-        </span>
+        <button
+          className="desktop-lock-handle"
+          onClick={lock}
+          {...lockGesture}
+          aria-label="Lock desktop. Click or swipe upward."
+        >
+          <ArrowUp size={14} />
+          <LockKeyhole size={13} /> Swipe up to lock
+        </button>
         {overview && (
           <section className="overview" aria-label="Applications">
             <button

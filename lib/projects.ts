@@ -8,6 +8,7 @@ export type Project = {
   text: string;
   tech: string;
   image?: string;
+  repository?: string;
   body: string;
 };
 
@@ -16,7 +17,7 @@ export async function getProjects(): Promise<Project[]> {
   const files = (await readdir(directory))
     .filter((file) => file.endsWith(".md"))
     .sort();
-  return Promise.all(
+  const projects = await Promise.all(
     files.map(async (file) => {
       const source = await readFile(path.join(directory, file), "utf8");
       const [, frontmatter = "", body = source] =
@@ -47,8 +48,17 @@ export async function getProjects(): Promise<Project[]> {
         text: fields.description || paragraph,
         tech: fields.technologies || "",
         image: fields.image,
+        repository: fields.repository,
         body,
       };
     }),
   );
+  const order = [
+    "civicconnect",
+    "construction-ai",
+    "gcr-pro",
+    "lead-management-workspace",
+    "slack-clone",
+  ];
+  return projects.sort((a, b) => order.indexOf(a.slug) - order.indexOf(b.slug));
 }

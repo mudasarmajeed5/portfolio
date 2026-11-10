@@ -29,14 +29,26 @@ export function Cover({ image, title }: { image?: string; title: string }) {
 export function ProjectDocument({ project }: { project: Project }) {
   return (
     <article className="project-detail">
-      <Cover
-        key={project.image || project.slug}
-        image={project.image}
-        title={project.title}
-      />
+      {project.image && (
+        <Cover
+          key={project.image}
+          image={project.image}
+          title={project.title}
+        />
+      )}
       <span className="eyebrow">{project.kind}</span>
       <h1>{project.title}</h1>
       <p>{project.text}</p>
+      {project.repository && (
+        <a
+          className="project-source"
+          href={project.repository}
+          target="_blank"
+          rel="noreferrer"
+        >
+          View source on GitHub ↗
+        </a>
+      )}
       <div className="skill-chips">
         {project.tech.split("·").map((t) => (
           <span key={t}>{t.trim()}</span>
@@ -78,9 +90,8 @@ export function ExperienceContent() {
       role: "Software Engineer Intern",
       company: "Carbonrepro · Houston, Texas, US",
       items: [
-        "Led a team of 5 frontend developers, coordinating feature development, code reviews, Git workflows, and frontend architecture.",
-        "Developed and integrated AI healthcare agents into a production healthcare management platform using Next.js, Python/Flask, and WebRTC.",
-        "Contributed to patient intake, receptionist workflows, patient/admin dashboards, RCM, localization, and AI-assisted clinical workflows.",
+        "Coordinated a five-person frontend team through feature development, code reviews, and Git workflows.",
+        "Integrated AI healthcare agents with Next.js, Python/Flask, and WebRTC for patient intake and receptionist workflows.",
       ],
     },
     {
@@ -88,17 +99,26 @@ export function ExperienceContent() {
       role: "Backend Developer",
       company: "Khuda Hafiz · Air University E-9, Islamabad",
       items: [
-        "Built production-ready backend features and RESTful APIs with Node.js, Express.js, and TypeScript; implemented secure authentication and API integrations.",
-        "Led a team of 8 developer interns; recognized as Best Intern among 12 developers for technical contributions, leadership, and consistent delivery.",
+        "Built REST APIs, authentication, and external integrations with Node.js, Express, and TypeScript.",
+        "Led eight developer interns and received the Best Intern award for technical delivery and team leadership.",
       ],
     },
     {
-      date: "Jan 2025 – Apr 2025",
+      date: "January 2025 – April 2026",
       role: "Frontend Developer",
       company: "DHA Gujranwala · Gujranwala (Remote)",
       items: [
-        "Worked directly with the Director of Marketing to modernize the web platform; built responsive React apps integrating business REST APIs.",
-        "Built reusable components, improving maintainability, performance, and user experience.",
+        "Built responsive React interfaces for the web platform, working directly with the Director of Marketing.",
+        "Created reusable frontend components and connected business REST APIs to customer-facing workflows.",
+      ],
+    },
+    {
+      date: "Approximately one year · project-based",
+      role: "Freelance Developer",
+      company: "Independent · Remote",
+      items: [
+        "Delivered web development projects for clients, translating requirements into interfaces and API integrations.",
+        "Handled implementation, feedback, and iteration across project delivery.",
       ],
     },
   ];
@@ -106,66 +126,128 @@ export function ExperienceContent() {
     <article className="document-app">
       <span className="eyebrow">THE JOURNEY SO FAR</span>
       <h1>Experience</h1>
-      <p className="muted">Building real products. Learning from real teams.</p>
-      <div className="experience-list">
-        {jobs.map((job) => (
-          <section className="job" key={job.company}>
-            <Building2 size={21} />
+      <p className="muted">
+        Frontend delivery, backend APIs, and full-stack product development.
+      </p>
+      <div className="experience-layout">
+        <div className="experience-list">
+          {jobs.map((job) => (
+            <section className="job" key={job.company}>
+              <Building2 size={21} />
+              <div>
+                <time>{job.date}</time>
+                <h2>{job.role}</h2>
+                <strong>{job.company}</strong>
+                <ul>
+                  {job.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+          ))}
+        </div>
+        <aside
+          className="experience-summary"
+          aria-label="Experience and technical focus"
+        >
+          <span className="eyebrow">AT A GLANCE</span>
+          <div className="experience-fact">
+            <strong>Jan 2025 — Sep 2026</strong>
+            <span>Employed roles shown here · includes overlapping dates</span>
+          </div>
+          <div className="experience-fact">
+            <strong>~1 year</strong>
+            <span>Freelance development · project-based</span>
+          </div>
+          <h2>Engineering focus</h2>
+          <div className="focus-flow">
             <div>
-              <time>{job.date}</time>
-              <h2>{job.role}</h2>
-              <strong>{job.company}</strong>
-              <ul>
-                {job.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+              <CodeFocus label="Interfaces" detail="React · Next.js" />
             </div>
-          </section>
-        ))}
+            <div>
+              <CodeFocus
+                label="APIs & workflows"
+                detail="Node.js · Express · Inngest"
+              />
+            </div>
+            <div>
+              <CodeFocus
+                label="Data & access"
+                detail="PostgreSQL · MongoDB · OAuth"
+              />
+            </div>
+          </div>
+          <p>
+            Applied across CRM, civic services, construction, education, and
+            team chat.
+          </p>
+        </aside>
       </div>
     </article>
+  );
+}
+function CodeFocus({ label, detail }: { label: string; detail: string }) {
+  return (
+    <>
+      <strong>{label}</strong>
+      <span>{detail}</span>
+    </>
   );
 }
 export function SkillsContent() {
   const groups = [
     {
-      name: "Backend & APIs",
+      name: "Backend & workflows",
       items: [
-        "Node.js",
-        "Express.js",
-        "REST APIs",
-        "Schema Validation",
-        "Middleware",
         "TypeScript",
-        "Python/Flask",
+        "Node.js",
+        "Express",
+        "Next.js API routes",
+        "REST APIs",
+        "Zod",
+        "Inngest",
+        "Python / Flask",
       ],
     },
-    { name: "Frontend", items: ["Next.js", "React", "Tailwind CSS"] },
     {
-      name: "Databases",
+      name: "Data & persistence",
       items: [
         "PostgreSQL",
-        "MongoDB",
         "Prisma",
         "Drizzle ORM",
+        "MongoDB / Mongoose",
         "Supabase",
         "Convex",
+        "GridFS",
       ],
     },
     {
-      name: "DevOps & practices",
+      name: "Authentication & integrations",
       items: [
-        "AWS EC2",
-        "Docker",
-        "Linux",
-        "Nginx",
-        "DNS",
-        "CI/CD",
+        "OAuth 2.0",
+        "JWT",
+        "Role-based access",
+        "Better Auth",
+        "NextAuth.js",
+        "Webhooks",
+        "Stripe",
+        "Google APIs",
+        "Gemini",
+      ],
+    },
+    {
+      name: "Frontend",
+      items: ["React", "Next.js", "Tailwind CSS", "Zustand", "TanStack Query"],
+    },
+    {
+      name: "Development practices",
+      items: [
         "Git",
         "Vitest",
-        "Integration Testing",
-        "Agile",
+        "Database migrations",
+        "Schema validation",
+        "Background jobs",
       ],
     },
   ];

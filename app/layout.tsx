@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mudassar Majeed | Full Stack Developer",
-  description: "",
+  title: "Mudassar Majeed | Full-Stack & Backend Developer",
+  description:
+    "Mudassar Majeed builds full-stack business software with TypeScript, Node.js, Next.js, and PostgreSQL. Explore projects, experience, and contact details.",
 };
 
 export default function RootLayout({

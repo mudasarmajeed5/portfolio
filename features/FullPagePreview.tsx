@@ -32,22 +32,25 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
       </header>
       <section id="about" className="preview-intro">
         <span className="eyebrow">
-          SOFTWARE ENGINEER · RAWALPINDI, PAKISTAN
+          FULL-STACK & BACKEND DEVELOPER · PAKISTAN
         </span>
         <h1>
           Mudassar Majeed
           <span>
-            Useful software.
+            Business software.
             <br />
-            Thoughtfully built.
+            From API to interface.
           </span>
         </h1>
         <p>
-          I build full-stack products, scalable backends, and AI-powered
-          experiences. My work spans healthcare, construction, civic services,
-          and everyday tools.
+          I build with TypeScript, Node.js, Next.js, and PostgreSQL. Explore
+          authenticated APIs, background workflows, real-time apps, and
+          practical AI integrations.
         </p>
-        <a className="primary" href="mailto:mudasarmajeed5@proton.me">
+        <a className="primary" href="#projects">
+          Explore five projects ↗
+        </a>{" "}
+        <a className="preview-contact" href="mailto:mudasarmajeed5@proton.me">
           <Mail size={17} /> Let’s talk
         </a>
       </section>

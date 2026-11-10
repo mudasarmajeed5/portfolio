@@ -1,11 +1,21 @@
 ---
-title: Construction AI — Full Stack
-category: AI · Construction · Aug 2026 – Oct 2026
-description: An AI-native construction estimating platform spanning bid intake, plan processing, takeoff, pricing, procurement, billing, compliance, and claims.
-technologies: TypeScript · Express · Drizzle ORM · PostgreSQL · Gemini · Next.js
-image: /projects/construction-ai/cover.jpg
+title: Construction AI
+category: Construction · AI workflows
+description: Turns construction plans into reviewable quantities, cost estimates, and progress-linked billing.
+technologies: TypeScript · Node.js · Express · PostgreSQL · Drizzle ORM · Gemini · Next.js
 ---
-An AI-native construction estimating platform spanning bid intake, plan processing, takeoff, pricing, procurement, billing, compliance, and claims.
+## My contribution
 
-- Developed a deterministic takeoff pipeline combining Gemini vision detections with validated cost-code matching and geometry-based wall measurement.
-- Implemented the data spine from measured takeoff → cost code → earned quantity → SOV/pay application, with milestone-weighted progress and variance calculations.
+Full-stack development focused on plan processing, measured takeoff, and the data flow from estimates to billing.
+
+## What it does
+
+- Processes plan sheets and detects trade-specific items for quantity takeoff.
+- Connects measured quantities with cost codes, pricing, and bid preparation.
+- Links earned quantities to schedules of values and pay applications.
+
+## Engineering highlights
+
+- Combines deterministic wall geometry with Gemini vision detections, keeping quantity calculation in application code.
+- Validates detections against firm-owned cost codes; unresolved items do not become invented estimate lines.
+- Routes vision quantities through human review and verified sheet calibration before downstream use.
