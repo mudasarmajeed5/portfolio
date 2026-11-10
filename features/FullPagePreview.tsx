@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Mail } from "lucide-react";
+import { AboutEngineering } from "./AboutEngineering";
 import type { Project } from "@/lib/projects";
 import {
   ExperienceContent,
@@ -43,9 +44,9 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
           </span>
         </h1>
         <p>
-          I build with TypeScript, Node.js, Next.js, and PostgreSQL. Explore
-          authenticated APIs, background workflows, real-time apps, and
-          practical AI integrations.
+          I build AI-native business applications, backend systems, and the
+          infrastructure that runs them. TypeScript, Node.js, Next.js, and
+          PostgreSQL — with hands-on Linux administration and self-hosting.
         </p>
         <a className="primary" href="#projects">
           Explore five projects ↗
@@ -53,6 +54,9 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
         <a className="preview-contact" href="mailto:mudasarmajeed5@proton.me">
           <Mail size={17} /> Let’s talk
         </a>
+      </section>
+      <section aria-label="About my engineering work">
+        <AboutEngineering />
       </section>
       <section id="experience">
         <ExperienceContent />

@@ -113,7 +113,7 @@ export function ExperienceContent() {
       ],
     },
     {
-      date: "Approximately one year · project-based",
+      date: "Project-based engagements",
       role: "Freelance Developer",
       company: "Independent · Remote",
       items: [
@@ -147,56 +147,38 @@ export function ExperienceContent() {
             </section>
           ))}
         </div>
-        <aside
-          className="experience-summary"
-          aria-label="Experience and technical focus"
-        >
-          <span className="eyebrow">AT A GLANCE</span>
-          <div className="experience-fact">
-            <strong>Jan 2025 — Sep 2026</strong>
-            <span>Employed roles shown here · includes overlapping dates</span>
-          </div>
-          <div className="experience-fact">
-            <strong>~1 year</strong>
-            <span>Freelance development · project-based</span>
-          </div>
-          <h2>Engineering focus</h2>
-          <div className="focus-flow">
-            <div>
-              <CodeFocus label="Interfaces" detail="React · Next.js" />
-            </div>
-            <div>
-              <CodeFocus
-                label="APIs & workflows"
-                detail="Node.js · Express · Inngest"
-              />
-            </div>
-            <div>
-              <CodeFocus
-                label="Data & access"
-                detail="PostgreSQL · MongoDB · OAuth"
-              />
-            </div>
-          </div>
-          <p>
-            Applied across CRM, civic services, construction, education, and
-            team chat.
-          </p>
-        </aside>
       </div>
     </article>
   );
 }
-function CodeFocus({ label, detail }: { label: string; detail: string }) {
-  return (
-    <>
-      <strong>{label}</strong>
-      <span>{detail}</span>
-    </>
-  );
-}
 export function SkillsContent() {
   const groups = [
+    {
+      name: "Infrastructure & operations",
+      items: [
+        "Linux administration",
+        "Alpine Linux",
+        "Nginx",
+        "AWS EC2",
+        "Application hosting",
+        "DNS & domains",
+        "Firewalls & ports",
+        "Load balancing",
+        "Bash scripting",
+        "Self-hosting",
+      ],
+    },
+    {
+      name: "AI application engineering",
+      items: [
+        "AI-native applications",
+        "Agent harnesses",
+        "Tool integration",
+        "LLM routing",
+        "Gemini",
+        "Workflow automation",
+      ],
+    },
     {
       name: "Backend & workflows",
       items: [

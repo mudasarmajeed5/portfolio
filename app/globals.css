@@ -96,7 +96,7 @@ button:hover:not(:disabled) {
   background: #161819;
   color: #fafafa;
   z-index: 50;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
 }
 .system-bar button {
@@ -142,7 +142,7 @@ button:hover:not(:disabled) {
   text-shadow: 0 2px 10px #0008;
 }
 .desktop-label > span {
-  font-size: 10px;
+  font-size: 13px;
   letter-spacing: 0.18em;
   font-weight: 600;
   opacity: 0.7;
@@ -170,7 +170,7 @@ button:hover:not(:disabled) {
   border: 1px solid transparent;
   border-radius: 9px;
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   text-shadow: 0 1px 5px #000b;
 }
 .desktop-shortcut:hover {
@@ -293,12 +293,12 @@ button:hover:not(:disabled) {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 650;
 }
 .window-owner {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -402,7 +402,7 @@ button:hover:not(:disabled) {
   color: white;
   border: 1px solid #fff2;
   padding: 5px 10px;
-  font-size: 11px;
+  font-size: 14px;
   white-space: nowrap;
   border-radius: 7px;
   opacity: 0;
@@ -422,7 +422,7 @@ button:hover:not(:disabled) {
   bottom: 5px;
   right: 15px;
   color: #ffffff8c;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.03em;
 }
 .welcome-app {
@@ -453,7 +453,7 @@ button:hover:not(:disabled) {
 .eyebrow {
   display: block;
   color: var(--accent);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   font-weight: 700;
 }
@@ -464,7 +464,7 @@ button:hover:not(:disabled) {
   line-height: 1.2;
 }
 .welcome-app h1 > span {
-  font-size: 17px;
+  font-size: 19px;
   display: block;
   color: var(--muted);
   font-weight: 400;
@@ -472,7 +472,7 @@ button:hover:not(:disabled) {
   margin-top: 9px;
 }
 .welcome-app > p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.9;
   color: var(--muted);
   max-width: 460px;
@@ -492,7 +492,7 @@ button:hover:not(:disabled) {
   gap: 9px;
   border-radius: 9px;
   padding: 12px 17px;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 600;
   background: var(--raised);
   text-decoration: none;
@@ -508,7 +508,7 @@ button:hover:not(:disabled) {
   border-top: 1px solid var(--line);
   margin: 0 -48px;
   padding: 17px 25px;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .welcome-footer > span:first-child {
@@ -535,7 +535,7 @@ button:hover:not(:disabled) {
   position: relative;
 }
 .files-sidebar > span {
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--muted);
   display: block;
@@ -547,7 +547,7 @@ button:hover:not(:disabled) {
   gap: 11px;
   width: 100%;
   padding: 11px;
-  font-size: 11px;
+  font-size: 14px;
   text-align: left;
   border-radius: 7px;
   margin-bottom: 3px;
@@ -560,7 +560,7 @@ button:hover:not(:disabled) {
   margin-left: auto;
 }
 .sidebar-note {
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.8;
   color: var(--muted);
   position: absolute;
@@ -591,7 +591,7 @@ button:hover:not(:disabled) {
   border: 1px solid var(--line);
   padding: 8px 12px;
   border-radius: 7px;
-  font-size: 11px;
+  font-size: 14px;
   flex: 1;
   min-width: 0;
   flex-wrap: wrap;
@@ -609,11 +609,11 @@ button:hover:not(:disabled) {
 }
 .folder-heading p {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
   margin: 6px 0;
 }
 .folder-heading > span {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .folder-grid {
@@ -656,12 +656,12 @@ button:hover:not(:disabled) {
   color: #9e6c28;
 }
 .file-folder strong {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 550;
   overflow-wrap: anywhere;
 }
 .file-folder small {
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
 }
 .project-detail {
@@ -679,7 +679,7 @@ button:hover:not(:disabled) {
   flex-direction: column;
   gap: 10px;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 14px;
   margin-bottom: 24px;
 }
 .project-cover img {
@@ -691,7 +691,7 @@ button:hover:not(:disabled) {
   margin: 10px 0 16px;
 }
 .project-detail p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.9;
   color: var(--muted);
   white-space: pre-line;
@@ -703,7 +703,7 @@ button:hover:not(:disabled) {
   margin: 16px 0 24px;
 }
 .skill-chips > span {
-  font-size: 11px;
+  font-size: 14px;
   padding: 8px 11px;
   background: var(--raised);
   border: 1px solid var(--line);
@@ -720,7 +720,7 @@ button:hover:not(:disabled) {
 }
 .muted {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.7;
 }
 .experience-list {
@@ -738,20 +738,20 @@ button:hover:not(:disabled) {
   flex-shrink: 0;
 }
 .job time {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .job h2 {
-  font-size: 16px;
+  font-size: 18px;
   margin: 8px 0;
 }
 .job strong {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--accent);
   font-weight: 500;
 }
 .job p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
   color: var(--muted);
   margin-bottom: 0;
@@ -760,7 +760,7 @@ button:hover:not(:disabled) {
   margin: 28px 0;
 }
 .skill-group h2 {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
 }
 .education {
@@ -768,11 +768,11 @@ button:hover:not(:disabled) {
   border: 1px solid var(--line);
   background: var(--panel);
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 15px;
 }
 .education p {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
 }
 .wallpaper-grid {
   display: grid;
@@ -802,7 +802,7 @@ button:hover:not(:disabled) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 15px;
   margin: 10px 4px 5px;
 }
 .wallpaper-grid i {
@@ -811,13 +811,13 @@ button:hover:not(:disabled) {
   border-radius: 50%;
 }
 .wallpaper-grid small {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   margin: 0 4px 5px;
   display: block;
 }
 .settings-note {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.8;
 }
@@ -836,7 +836,7 @@ button:hover:not(:disabled) {
   color: var(--accent);
 }
 .contact-app p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--muted);
   margin: 20px auto;
@@ -846,10 +846,10 @@ button:hover:not(:disabled) {
   justify-content: center;
   gap: 25px;
   margin: 28px 0;
-  font-size: 12px;
+  font-size: 15px;
 }
 .contact-app > small {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .overview {
@@ -891,7 +891,7 @@ button:hover:not(:disabled) {
   outline: 0;
   width: 100%;
   color: white;
-  font-size: 13px;
+  font-size: 16px;
 }
 .overview h1 {
   font-size: 30px;
@@ -899,7 +899,7 @@ button:hover:not(:disabled) {
   margin: 0 0 9px;
 }
 .overview > p {
-  font-size: 12px;
+  font-size: 15px;
   color: #aab5bc;
 }
 .launcher-apps {
@@ -915,7 +915,7 @@ button:hover:not(:disabled) {
   flex-direction: column;
   align-items: center;
   gap: 13px;
-  font-size: 12px;
+  font-size: 15px;
   width: 125px;
   padding: 17px 8px;
   border-radius: 13px;
@@ -932,7 +932,7 @@ button:hover:not(:disabled) {
   display: inline-flex;
   gap: 8px;
   align-items: center;
-  font-size: 11px;
+  font-size: 14px;
   background: #ffffff10;
   padding: 10px 15px;
   border-radius: 20px;
@@ -958,7 +958,7 @@ button:hover:not(:disabled) {
   line-height: 1.1;
 }
 .lock-screen > p {
-  font-size: 13px;
+  font-size: 16px;
   color: #ffffffb0;
   margin: 16px 0 36px;
 }
@@ -987,10 +987,10 @@ button:hover:not(:disabled) {
   margin-bottom: 10px;
 }
 .lock-profile > strong {
-  font-size: 18px;
+  font-size: 20px;
 }
 .lock-profile > span:not(.lock-avatar) {
-  font-size: 11px;
+  font-size: 14px;
   color: #ffffffae;
 }
 .lock-profile .unlock-prompt {
@@ -1010,7 +1010,7 @@ button:hover:not(:disabled) {
   margin-bottom: 16px;
 }
 .game-head small {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   color: var(--muted);
 }
@@ -1027,7 +1027,7 @@ button:hover:not(:disabled) {
 }
 .score small {
   display: block;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--muted);
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -1046,7 +1046,7 @@ button:hover:not(:disabled) {
   align-items: center;
   flex-wrap: wrap;
   padding-top: 15px;
-  font-size: 11px;
+  font-size: 14px;
 }
 .game-actions > span {
   margin-right: auto;
@@ -1063,7 +1063,7 @@ button:hover:not(:disabled) {
   font-weight: 600;
 }
 .game-hint {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   margin: 12px 0 0;
 }
@@ -1128,7 +1128,7 @@ button:hover:not(:disabled) {
   .system-bar {
     height: 32px;
     padding: 0 6px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .activities {
     font-size: 0;
@@ -1143,7 +1143,7 @@ button:hover:not(:disabled) {
     display: none;
   }
   .system-clock {
-    font-size: 10px;
+    font-size: 13px;
   }
   .desktop-label {
     top: 70px;
@@ -1157,7 +1157,7 @@ button:hover:not(:disabled) {
   }
   .desktop-shortcut {
     width: 85px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .windows-layer {
     inset: 32px 0 83px;
@@ -1226,10 +1226,10 @@ button:hover:not(:disabled) {
     font-size: 30px;
   }
   .welcome-app h1 > span {
-    font-size: 14px;
+    font-size: 16px;
   }
   .welcome-app > p {
-    font-size: 12px;
+    font-size: 15px;
   }
   .welcome-actions {
     flex-direction: column;
@@ -1265,7 +1265,7 @@ button:hover:not(:disabled) {
     padding: 12px;
   }
   .folder-heading > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .project-detail {
     padding: 20px;
@@ -1277,10 +1277,10 @@ button:hover:not(:disabled) {
     gap: 7px;
   }
   .wallpaper-grid strong {
-    font-size: 10px;
+    font-size: 13px;
   }
   .wallpaper-grid small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .wallpaper-grid button {
     padding: 4px;
@@ -1302,7 +1302,7 @@ button:hover:not(:disabled) {
   .launcher-apps button {
     width: 88px;
     padding: 12px 3px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .launcher-apps .app-icon {
     width: 54px;
@@ -1455,7 +1455,7 @@ button:hover:not(:disabled) {
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 10px;
+  font-size: 13px;
   text-decoration: none;
   color: var(--accent);
   white-space: nowrap;
@@ -1466,7 +1466,7 @@ button:hover:not(:disabled) {
   background: var(--raised);
 }
 .welcome-actions .preview-link {
-  font-size: 11px;
+  font-size: 14px;
 }
 .mobile-file-locations {
   display: none;
@@ -1483,7 +1483,7 @@ button:hover:not(:disabled) {
   list-style: disc;
   padding-left: 17px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.9;
 }
 .job li,
@@ -1492,7 +1492,7 @@ button:hover:not(:disabled) {
   margin-bottom: 9px;
 }
 .project-detail h2 {
-  font-size: 17px;
+  font-size: 19px;
   margin: 28px 0 13px;
   letter-spacing: -0.025em;
 }
@@ -1509,7 +1509,7 @@ button:hover:not(:disabled) {
   border: 1px solid var(--line);
   padding: 17px;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 15px;
 }
 .sound-preference strong {
   margin-left: auto;
@@ -1537,12 +1537,12 @@ button:hover:not(:disabled) {
   align-items: center;
   gap: 7px;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 15px;
 }
 .preview-nav nav {
   display: flex;
   gap: 20px;
-  font-size: 12px;
+  font-size: 15px;
 }
 .preview-nav nav a {
   text-decoration: none;
@@ -1569,7 +1569,7 @@ button:hover:not(:disabled) {
   max-width: 590px;
   color: var(--muted);
   line-height: 1.9;
-  font-size: 15px;
+  font-size: 17px;
   margin: 28px 0;
 }
 .full-preview .document-app {
@@ -1592,7 +1592,7 @@ button:hover:not(:disabled) {
   margin: 0 0 40px;
 }
 .project-index a {
-  font-size: 12px;
+  font-size: 15px;
   text-decoration: none;
   border: 1px solid var(--line);
   background: var(--panel);
@@ -1610,13 +1610,13 @@ button:hover:not(:disabled) {
 }
 .full-preview .project-detail p,
 .full-preview .project-detail li {
-  font-size: 14px;
+  font-size: 16px;
 }
 .full-preview .contact-app {
   padding: 60px 0;
 }
 .preview-footer {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
   padding: 25px 0 35px;
 }
@@ -1640,7 +1640,7 @@ button:hover:not(:disabled) {
   .mobile-file-locations button {
     padding: 8px 11px;
     white-space: nowrap;
-    font-size: 10px;
+    font-size: 13px;
     border-radius: 6px;
   }
   .mobile-file-locations button[aria-current] {
@@ -1660,7 +1660,7 @@ button:hover:not(:disabled) {
   }
   .preview-nav nav {
     gap: 17px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .preview-intro {
     padding: 55px 0;
@@ -1693,21 +1693,21 @@ button:hover:not(:disabled) {
   height: 48px;
 }
 .project-grid .file-folder strong {
-  font-size: 17px;
+  font-size: 19px;
 }
 .project-grid .file-folder small {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--accent);
 }
 .project-grid p {
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--muted);
   margin: 0;
 }
 .card-tech {
   font-family: var(--font-geist-mono), monospace;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: auto;
   padding-top: 8px;
@@ -1716,7 +1716,7 @@ button:hover:not(:disabled) {
   display: flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--accent);
   padding-top: 4px;
 }
@@ -1740,16 +1740,16 @@ button:hover:not(:disabled) {
   border-bottom: 1px solid var(--line);
 }
 .experience-fact strong {
-  font-size: 15px;
+  font-size: 17px;
 }
 .experience-fact span,
 .experience-summary p {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.7;
   color: var(--muted);
 }
 .experience-summary h2 {
-  font-size: 13px;
+  font-size: 16px;
   margin: 23px 0 18px;
 }
 .focus-flow {
@@ -1773,17 +1773,17 @@ button:hover:not(:disabled) {
   background: var(--accent);
 }
 .focus-flow strong {
-  font-size: 12px;
+  font-size: 15px;
 }
 .focus-flow span {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
 }
 .job ul {
   padding-left: 16px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.8;
 }
 .job li + li {
@@ -1804,7 +1804,7 @@ button:hover:not(:disabled) {
   background: #18201cdd;
   color: #e3eee8;
   border-radius: 20px;
-  font-size: 10px;
+  font-size: 13px;
   touch-action: none;
   user-select: none;
 }
@@ -1815,14 +1815,14 @@ button:hover:not(:disabled) {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 15px;
   color: white;
   margin-top: 20px;
 }
 .preview-contact {
   display: inline-flex;
   padding: 14px 18px;
-  font-size: 13px;
+  font-size: 16px;
 }
 .project-detail {
   max-width: 950px;
@@ -1846,12 +1846,12 @@ button:hover:not(:disabled) {
     padding: 16px;
   }
   .project-grid .file-folder strong {
-    font-size: 16px;
+    font-size: 18px;
   }
   .desktop-lock-handle {
     bottom: 0;
     min-height: 26px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .dock {
     bottom: max(30px, env(safe-area-inset-bottom));
@@ -1860,7 +1860,7 @@ button:hover:not(:disabled) {
     bottom: 100px;
   }
   .lock-read-link {
-    font-size: 11px;
+    font-size: 14px;
   }
 }
 @media (max-width: 480px) {
@@ -1893,5 +1893,182 @@ button:hover:not(:disabled) {
   }
   .lock-read-link {
     margin-top: 10px;
+  }
+}
+
+/* Engineering evidence sits alongside the introduction in both portfolio views. */
+.experience-layout {
+  grid-template-columns: 1fr;
+}
+.engineering-profile {
+  text-align: left;
+  padding: 28px 0 36px;
+}
+.engineering-heading h2 {
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  margin: 12px 0;
+}
+.engineering-heading p,
+.engineering-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.engineering-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.engineering-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  padding: 24px;
+  min-width: 0;
+}
+.engineering-card h3 {
+  font-size: 20px;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+.engineering-card .skill-chips {
+  margin: 20px 0;
+}
+.engineering-card .skill-chips span {
+  font-size: 13px;
+}
+.homelab-card,
+.experience-overview {
+  grid-column: 1 / -1;
+}
+.experience-pie {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 26px 0;
+}
+.experience-donut {
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(
+    #63dfae 0deg 246.3158deg,
+    #91b7f7 246.3158deg 303.1579deg,
+    #c4a4ed 303.1579deg 360deg
+  );
+}
+.experience-donut > span {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: var(--panel);
+}
+.experience-donut strong {
+  font-size: 38px;
+  letter-spacing: -0.05em;
+}
+.experience-donut small {
+  font-size: 14px;
+  color: var(--muted);
+}
+.experience-pie ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+.experience-pie li {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.experience-pie li strong {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.experience-pie i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.pie-frontend {
+  background: #63dfae;
+}
+.pie-backend {
+  background: #91b7f7;
+}
+.pie-health {
+  background: #c4a4ed;
+}
+.engineering-card .experience-method {
+  font-size: 13px;
+}
+.welcome-app .engineering-grid {
+  grid-template-columns: 1fr;
+}
+.welcome-app .engineering-profile {
+  padding-bottom: 20px;
+}
+.files-sidebar {
+  width: 178px;
+  flex-shrink: 0;
+}
+.app-window {
+  width: min(1060px, calc(100vw - 240px));
+}
+.project-grid .file-folder p {
+  font-size: 15px;
+}
+.project-grid .card-tech {
+  font-size: 13px;
+}
+.window-body,
+.file-content {
+  min-width: 0;
+}
+@media (max-width: 1050px) {
+  .app-window {
+    width: calc(100vw - 80px);
+  }
+}
+@media (max-width: 759px) {
+  .app-window {
+    width: auto;
+  }
+  .engineering-grid {
+    grid-template-columns: 1fr;
+  }
+  .engineering-card {
+    padding: 20px;
+  }
+  .experience-pie {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .preview-nav {
+    flex-wrap: wrap;
+  }
+  .preview-nav nav {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .mobile-file-locations button {
+    min-height: 44px;
   }
 }

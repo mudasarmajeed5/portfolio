@@ -1,8 +1,8 @@
 ---
 title: LeadPulse
-category: Lead management software
-description: Keeps every lead accountable, from first WhatsApp message to follow-up, payment, and appointment.
-technologies: Next.js · TypeScript · PostgreSQL · Drizzle ORM · Better Auth · Inngest
+category: AI-native · Lead management
+description: An AI-native CRM that keeps every lead accountable, from first WhatsApp message to follow-up, payment, and appointment.
+technologies: Next.js · TypeScript · PostgreSQL · Drizzle ORM · Better Auth · Inngest · Gemini · OpenRouter
 ---
 ## My contribution
 
@@ -13,6 +13,11 @@ Full-stack development on a multi-tenant CRM, connecting lead ownership, automat
 - Assigns one accountable owner per lead, with acknowledgement deadlines and automatic escalation.
 - Provides configurable pipelines, customer records, absence reassignment, and a recovery queue.
 - Connects WhatsApp, Google Calendar, email alerts, and Stripe Checkout in test mode.
+
+## AI inside the sales workflow
+
+- Analyzes WhatsApp conversations for customer interest, concise summaries, and suggested next actions.
+- Supports configurable Gemini and OpenRouter providers with structured responses, cached insights, and quota handling.
 
 ## Engineering highlights
 

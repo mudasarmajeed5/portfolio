@@ -36,6 +36,7 @@ import {
   X,
 } from "lucide-react";
 import Snake from "./Snake";
+import { AboutEngineering } from "./AboutEngineering";
 import { useSwipeAction } from "./hooks/useSwipeAction";
 
 type AppId =
@@ -510,9 +511,9 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             Mudassar Majeed<span>Full-stack & backend developer.</span>
           </h1>
           <p>
-            I build business software with TypeScript, Node.js, Next.js, and
-            PostgreSQL — from authenticated APIs and background jobs to the
-            interfaces people use every day.
+            I build AI-native business software with TypeScript, Node.js,
+            Next.js, and PostgreSQL — connecting APIs, agents, background jobs,
+            and the Linux infrastructure that runs them.
           </p>
           <div className="welcome-actions">
             <button className="primary" onClick={() => launch("projects")}>
@@ -525,6 +526,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
               Let’s talk <ChevronRight size={16} />
             </button>
           </div>
+          <AboutEngineering />
           <div className="welcome-footer">
             <span>
               <i /> Open to opportunities

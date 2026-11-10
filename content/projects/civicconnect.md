@@ -1,8 +1,8 @@
 ---
 title: CIVIC_CONNECT
 repository: https://github.com/developerzohaib786/aurex-repo
-category: Civic services
-description: A resident services portal for reporting issues, applying for permits, and tracking city responses.
+category: AI-native · Civic services
+description: An AI-native resident services portal for reporting issues, applying for permits, and tracking city responses.
 technologies: Next.js · TypeScript · Node.js · Express · PostgreSQL · Prisma
 ---
 ## My contribution
