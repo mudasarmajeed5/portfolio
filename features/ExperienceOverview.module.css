@@ -1,0 +1,96 @@
+.overview {
+  padding-bottom: 28px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--line);
+}
+.figure {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.ring {
+  width: 184px;
+  height: 184px;
+  flex: 0 0 184px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #63dfae 0deg 220.645deg,
+    #91b7f7 220.645deg 360deg
+  );
+  padding: 14px;
+}
+.center {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+}
+.value {
+  font-size: 46px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  color: var(--ink);
+}
+.legend {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.legend h2 {
+  margin: 0 0 20px;
+  font-size: 23px;
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+.legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.legend li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #63dfae;
+}
+.legend li:last-child i {
+  background: #91b7f7;
+}
+.legend strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  max-width: 600px;
+}
+@media (max-width: 480px) {
+  .figure {
+    gap: 22px;
+  }
+  .ring {
+    margin-inline: auto;
+  }
+  .legend {
+    flex-basis: 100%;
+  }
+}

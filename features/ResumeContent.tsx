@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FolderOpen, Mail } from "lucide-react";
-import { ExperienceOverview } from "./AboutEngineering";
+import SkillsMap from "./skills/SkillsMap";
 import type { Project } from "@/lib/projects";
 
 export function Cover({ image, title }: { image?: string; title: string }) {
@@ -84,9 +84,7 @@ export function ProjectDocument({ project }: { project: Project }) {
     </article>
   );
 }
-export function ExperienceContent({
-  showOverview = true,
-}: { showOverview?: boolean } = {}) {
+export function ExperienceContent() {
   const jobs = [
     {
       date: "Jul 2026 – Sep 2026",
@@ -127,7 +125,6 @@ export function ExperienceContent({
   ];
   return (
     <article className="document-app">
-      {showOverview && <ExperienceOverview />}
       <span className="eyebrow">WORK HISTORY</span>
       <h1>Experience</h1>
       <p className="muted">
@@ -155,102 +152,14 @@ export function ExperienceContent({
   );
 }
 export function SkillsContent() {
-  const groups = [
-    {
-      name: "Infrastructure & operations",
-      items: [
-        "Linux administration",
-        "Alpine Linux",
-        "Nginx",
-        "AWS EC2",
-        "Application hosting",
-        "DNS & domains",
-        "Firewalls & ports",
-        "Load balancing",
-        "Bash scripting",
-        "Self-hosting",
-      ],
-    },
-    {
-      name: "AI application engineering",
-      items: [
-        "AI-native applications",
-        "Agent harnesses",
-        "Tool integration",
-        "LLM routing",
-        "Gemini",
-        "Workflow automation",
-      ],
-    },
-    {
-      name: "Backend & workflows",
-      items: [
-        "TypeScript",
-        "Node.js",
-        "Express",
-        "Next.js API routes",
-        "REST APIs",
-        "Zod",
-        "Inngest",
-        "Python / Flask",
-      ],
-    },
-    {
-      name: "Data & persistence",
-      items: [
-        "PostgreSQL",
-        "Prisma",
-        "Drizzle ORM",
-        "MongoDB / Mongoose",
-        "Supabase",
-        "Convex",
-        "GridFS",
-      ],
-    },
-    {
-      name: "Authentication & integrations",
-      items: [
-        "OAuth 2.0",
-        "JWT",
-        "Role-based access",
-        "Better Auth",
-        "NextAuth.js",
-        "Webhooks",
-        "Stripe",
-        "Google APIs",
-        "Gemini",
-      ],
-    },
-    {
-      name: "Frontend",
-      items: ["React", "Next.js", "Tailwind CSS", "Zustand", "TanStack Query"],
-    },
-    {
-      name: "Development practices",
-      items: [
-        "Git",
-        "Vitest",
-        "Database migrations",
-        "Schema validation",
-        "Background jobs",
-      ],
-    },
-  ];
   return (
     <article className="document-app">
       <span className="eyebrow">MY TOOLBOX</span>
       <h1>Skills & education</h1>
-      <p className="muted">The tools behind the work.</p>
-      {groups.map((group) => (
-        <section className="skill-group" key={group.name}>
-          <h2>{group.name}</h2>
-          <div className="skill-chips">
-            {group.items.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </section>
-      ))}
+      <p className="muted">
+        Four connected disciplines, from interface to infrastructure.
+      </p>
+      <SkillsMap />
       <div className="education">
         <strong>Air University Islamabad</strong>
         <p>B.S. Software Engineering · GPA 3.39</p>

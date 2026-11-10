@@ -1,3 +1,5 @@
+import styles from "./ExperienceOverview.module.css";
+
 export function AboutEngineering() {
   return (
     <div className="engineering-profile">
@@ -67,27 +69,22 @@ export function AboutEngineering() {
 export function ExperienceOverview() {
   return (
     <section
-      className="experience-overview"
+      className={styles.overview}
       aria-label="Combined development experience"
     >
       <span className="eyebrow">EXPERIENCE</span>
-      <figure className="experience-pie">
+      <figure className={styles.figure}>
         <div
-          className="experience-donut"
+          className={styles.ring}
           role="img"
           aria-label="2.6 years of combined experience: 1.58 years in employed roles and one year of freelance development. Freelance work may overlap employment."
         >
-          <span>
-            <strong>2.6</strong>
-            <small>years combined</small>
-          </span>
+          <div className={styles.center}>
+            <span className={styles.value}>2.6</span>
+          </div>
         </div>
-        <figcaption>
-          <h2>
-            Building professionally.
-            <br />
-            Delivering independently.
-          </h2>
+        <figcaption className={styles.legend}>
+          <h2>Years of combined experience</h2>
           <ul>
             <li>
               <i className="pie-frontend" />
@@ -106,7 +103,7 @@ export function ExperienceOverview() {
           </ul>
         </figcaption>
       </figure>
-      <p className="experience-method">
+      <p className={styles.note}>
         Combined experience, rounded to one decimal. Employment overlaps counted
         once; freelance work may overlap employment.
       </p>
