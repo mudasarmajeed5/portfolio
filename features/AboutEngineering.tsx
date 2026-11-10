@@ -1,6 +1,7 @@
 export function AboutEngineering() {
   return (
     <div className="engineering-profile">
+      <ExperienceOverview />
       <div className="engineering-heading">
         <span className="eyebrow">BUILD · INTEGRATE · OPERATE</span>
         <h2>Beyond the interface.</h2>
@@ -58,53 +59,57 @@ export function AboutEngineering() {
             communication.
           </p>
         </section>
-        <section className="engineering-card experience-overview">
-          <span className="eyebrow">PROFESSIONAL EXPERIENCE</span>
-          <h3>19 months across employed roles</h3>
-          <figure className="experience-pie">
-            <div
-              className="experience-donut"
-              role="img"
-              aria-label="19 unique calendar months: 13 frontend-only months at DHA, 3 overlapping frontend and backend months at DHA and Khuda Hafiz, and 3 healthcare engineering months at Carbonrepro."
-            >
-              <span>
-                <strong>19</strong>
-                <small>months</small>
-              </span>
-            </div>
-            <figcaption>
-              <ul>
-                <li>
-                  <i className="pie-frontend" />
-                  <span>
-                    Frontend · DHA<strong>13 months</strong>
-                  </span>
-                </li>
-                <li>
-                  <i className="pie-backend" />
-                  <span>
-                    Frontend + backend · concurrent roles
-                    <strong>3 months</strong>
-                  </span>
-                </li>
-                <li>
-                  <i className="pie-health" />
-                  <span>
-                    Healthcare engineering · Carbonrepro
-                    <strong>3 months</strong>
-                  </span>
-                </li>
-              </ul>
-            </figcaption>
-          </figure>
-          <p className="experience-method">
-            Calendar months covered by the listed roles, counted inclusively.
-            Overlapping employment counted once. Freelance projects are
-            additional; excluded from this total because their dates are
-            unspecified.
-          </p>
-        </section>
       </div>
     </div>
+  );
+}
+
+export function ExperienceOverview() {
+  return (
+    <section
+      className="experience-overview"
+      aria-label="Combined development experience"
+    >
+      <span className="eyebrow">EXPERIENCE</span>
+      <figure className="experience-pie">
+        <div
+          className="experience-donut"
+          role="img"
+          aria-label="2.6 years of combined experience: 1.58 years in employed roles and one year of freelance development. Freelance work may overlap employment."
+        >
+          <span>
+            <strong>2.6</strong>
+            <small>years combined</small>
+          </span>
+        </div>
+        <figcaption>
+          <h2>
+            Building professionally.
+            <br />
+            Delivering independently.
+          </h2>
+          <ul>
+            <li>
+              <i className="pie-frontend" />
+              <span>
+                Employed development
+                <strong>1.58 years · DHA, Khuda Hafiz & Carbonrepro</strong>
+              </span>
+            </li>
+            <li>
+              <i className="pie-backend" />
+              <span>
+                Freelance development
+                <strong>1 year · independent client projects</strong>
+              </span>
+            </li>
+          </ul>
+        </figcaption>
+      </figure>
+      <p className="experience-method">
+        Combined experience, rounded to one decimal. Employment overlaps counted
+        once; freelance work may overlap employment.
+      </p>
+    </section>
   );
 }

@@ -59,7 +59,7 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
         <AboutEngineering />
       </section>
       <section id="experience">
-        <ExperienceContent />
+        <ExperienceContent showOverview={false} />
       </section>
       <section id="projects" className="preview-projects">
         <span className="eyebrow">SELECTED WORK</span>

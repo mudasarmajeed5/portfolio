@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Building2, FolderOpen, Mail } from "lucide-react";
+import { FolderOpen, Mail } from "lucide-react";
+import { ExperienceOverview } from "./AboutEngineering";
 import type { Project } from "@/lib/projects";
 
 export function Cover({ image, title }: { image?: string; title: string }) {
@@ -83,7 +84,9 @@ export function ProjectDocument({ project }: { project: Project }) {
     </article>
   );
 }
-export function ExperienceContent() {
+export function ExperienceContent({
+  showOverview = true,
+}: { showOverview?: boolean } = {}) {
   const jobs = [
     {
       date: "Jul 2026 – Sep 2026",
@@ -113,7 +116,7 @@ export function ExperienceContent() {
       ],
     },
     {
-      date: "Project-based engagements",
+      date: "1 year · freelance",
       role: "Freelance Developer",
       company: "Independent · Remote",
       items: [
@@ -124,7 +127,8 @@ export function ExperienceContent() {
   ];
   return (
     <article className="document-app">
-      <span className="eyebrow">THE JOURNEY SO FAR</span>
+      {showOverview && <ExperienceOverview />}
+      <span className="eyebrow">WORK HISTORY</span>
       <h1>Experience</h1>
       <p className="muted">
         Frontend delivery, backend APIs, and full-stack product development.
@@ -133,9 +137,8 @@ export function ExperienceContent() {
         <div className="experience-list">
           {jobs.map((job) => (
             <section className="job" key={job.company}>
-              <Building2 size={21} />
+              <time className="job-date">{job.date}</time>
               <div>
-                <time>{job.date}</time>
                 <h2>{job.role}</h2>
                 <strong>{job.company}</strong>
                 <ul>
