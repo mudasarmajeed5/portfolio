@@ -1,7 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import {
+  useId,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+} from "react";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "motion/react";
 import {
   Braces,
   Database,
@@ -17,133 +29,179 @@ import styles from "./SkillsMap.module.css";
 const icons = [Braces, Database, Sparkles, Server];
 
 export default function SkillsMap() {
+  const id = useId();
   const canvas = useRef<HTMLDivElement>(null);
-  const hub = useRef<HTMLDivElement>(null);
-  const nodes = useRef<(HTMLElement | null)[]>([]);
-  const [paths, setPaths] = useState<string[]>([]);
+  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [active, setActive] = useState(1);
   const [paused, setPaused] = useState(false);
-  const reducedMotion = useReducedMotion();
-  const visible = useInView(canvas, { amount: 0.1 });
-  const running = visible && !paused && !reducedMotion;
-
-  useEffect(() => {
-    const measure = () => {
-      if (!canvas.current || !hub.current) return;
-      const bounds = canvas.current.getBoundingClientRect();
-      const root = hub.current.getBoundingClientRect();
-      const x = root.left + root.width / 2 - bounds.left;
-      const y = root.bottom - bounds.top;
-      setPaths(
-        nodes.current.map((node) => {
-          if (!node) return "";
-          const rect = node.getBoundingClientRect();
-          const endX = rect.left + rect.width / 2 - bounds.left;
-          const endY = rect.top - bounds.top;
-          const middle = endY - 20;
-          return `M ${x} ${y} V ${middle} H ${endX} V ${endY}`;
-        }),
-      );
-    };
-    const observer = new ResizeObserver(measure);
-    if (canvas.current) observer.observe(canvas.current);
-    nodes.current.forEach((node) => {
-      if (node) observer.observe(node);
-    });
-    measure();
-    return () => observer.disconnect();
-  }, []);
-
+  const reduced = useReducedMotion();
+  const visible = useInView(canvas, { amount: 0.15 });
+  const running = visible && !paused && !reduced;
+  const group = skillGroups[active];
+  const onKey = (event: KeyboardEvent, index: number) => {
+    let next = index;
+    if (event.key === "ArrowRight") next = (index + 1) % skillGroups.length;
+    else if (event.key === "ArrowLeft")
+      next = (index + skillGroups.length - 1) % skillGroups.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = skillGroups.length - 1;
+    else return;
+    event.preventDefault();
+    setActive(next);
+    tabs.current[next]?.focus();
+  };
   return (
-    <section className={styles.map} aria-label="Engineering skills mind map">
+    <section
+      className={styles.map}
+      aria-label="Engineering skills mind map"
+      style={{ "--branch": group.color } as CSSProperties}
+    >
       <div className={styles.toolbar}>
-        <span>How the pieces connect</span>
+        <p>Explore how I build and run applications.</p>
         <button
-          onClick={() => setPaused(!paused)}
           aria-pressed={paused}
-          disabled={Boolean(reducedMotion)}
+          disabled={Boolean(reduced)}
+          onClick={() => setPaused(!paused)}
           aria-label={
             paused ? "Play workflow animation" : "Pause workflow animation"
           }
         >
-          {paused || reducedMotion ? <Play size={14} /> : <Pause size={14} />}
-          {reducedMotion
-            ? "Reduced motion"
-            : paused
-              ? "Play motion"
-              : "Pause motion"}
+          {paused || reduced ? <Play size={15} /> : <Pause size={15} />}
+          {reduced ? "Motion reduced" : paused ? "Play" : "Pause"}
         </button>
       </div>
       <div className={styles.canvas} ref={canvas}>
-        <svg className={styles.connections} aria-hidden="true">
-          {paths.map((d, index) => (
-            <g key={skillGroups[index].id}>
-              <path
-                d={d}
-                fill="none"
-                stroke={skillGroups[index].color}
-                strokeOpacity="0.25"
-                strokeWidth="1.5"
-              />
-              {running && (
-                <motion.path
-                  d={d}
-                  fill="none"
-                  stroke={skillGroups[index].color}
-                  strokeWidth="2"
-                  strokeDasharray="4 20"
-                  initial={{ strokeDashoffset: 0 }}
-                  animate={{ strokeDashoffset: -48 }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                />
-              )}
-            </g>
-          ))}
-        </svg>
-        <div className={styles.hub} ref={hub}>
-          <Network size={22} />
-          <div>
-            <strong>Full-stack engineering</strong>
-            <span>Interface → services → intelligence → infrastructure</span>
+        <div className={styles.hub}>
+          <Network size={23} />
+          <strong>Full-stack engineering</strong>
+        </div>
+        <div className={styles.feed} aria-hidden="true">
+          <motion.span
+            animate={
+              running ? { y: [0, 34], opacity: [0, 1, 0] } : { opacity: 0 }
+            }
+            transition={{ duration: 1.8, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+        <LayoutGroup id={id}>
+          <div
+            className={styles.tabs}
+            role="tablist"
+            aria-label="Engineering disciplines"
+          >
+            {skillGroups.map((item, index) => {
+              const Icon = icons[index];
+              return (
+                <button
+                  ref={(node) => {
+                    tabs.current[index] = node;
+                  }}
+                  key={item.id}
+                  id={`${id}-tab-${item.id}`}
+                  role="tab"
+                  aria-selected={active === index}
+                  aria-controls={`${id}-panel-${item.id}`}
+                  tabIndex={active === index ? 0 : -1}
+                  onClick={() => setActive(index)}
+                  onKeyDown={(event) => onKey(event, index)}
+                  className={styles.tab}
+                >
+                  {active === index && (
+                    <motion.span
+                      className={styles.selection}
+                      layoutId="selected-discipline"
+                      transition={{
+                        duration: reduced ? 0 : 0.28,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                    />
+                  )}
+                  <Icon size={20} />
+                  <span>{item.title}</span>
+                </button>
+              );
+            })}
           </div>
-        </div>
-        <div className={styles.groups}>
-          {skillGroups.map((group, index) => {
-            const Icon = icons[index];
-            return (
-              <section
-                key={group.id}
-                ref={(node) => {
-                  nodes.current[index] = node;
-                }}
-                className={styles.group}
-                style={{ "--branch": group.color } as CSSProperties}
-                aria-labelledby={`skill-${group.id}`}
-              >
-                <header>
-                  <span className={styles.icon}>
-                    <Icon size={20} />
-                  </span>
-                  <div>
-                    <span className={styles.verb}>{group.verb}</span>
-                    <h2 id={`skill-${group.id}`}>{group.title}</h2>
-                  </div>
-                </header>
-                <div className={styles.branches}>
-                  {group.branches.map((branch) => (
-                    <div className={styles.branch} key={branch.name}>
-                      <h3>{branch.name}</h3>
-                      <ul>
-                        {branch.skills.map((skill) => (
-                          <li key={skill}>{skill}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+        </LayoutGroup>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={group.id}
+            id={`${id}-panel-${group.id}`}
+            role="tabpanel"
+            aria-labelledby={`${id}-tab-${group.id}`}
+            tabIndex={0}
+            className={styles.panel}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: reduced ? 1 : 0.4 }}
+            transition={{ duration: 0.1 }}
+          >
+            <div className={styles.panelTitle}>
+              <h2>{group.verb}</h2>
+              <span>{group.title}</span>
+            </div>
+            <div className={styles.branches}>
+              {group.branches.map((branch, index) => (
+                <div className={styles.branch} key={branch.name}>
+                  <svg
+                    className={styles.wire}
+                    viewBox="0 0 28 42"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M1 0 V21 Q1 28 8 28 H28"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeOpacity=".2"
+                    />
+                    <motion.path
+                      d="M1 0 V21 Q1 28 8 28 H28"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      initial={{ pathLength: reduced ? 1 : 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{
+                        duration: reduced ? 0 : 0.5,
+                        delay: reduced ? 0 : index * 0.08,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
+                    />
+                  </svg>
+                  <h3>{branch.name}</h3>
+                  <motion.ul
+                    initial={false}
+                    animate={
+                      reduced
+                        ? {}
+                        : { clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)"] }
+                    }
+                    transition={{
+                      duration: 0.35,
+                      delay: index * 0.06,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {branch.skills.map((skill) => (
+                      <li key={skill}>{skill}</li>
+                    ))}
+                  </motion.ul>
                 </div>
-              </section>
-            );
-          })}
-        </div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+        {skillGroups.map((item, index) =>
+          index !== active ? (
+            <div
+              key={item.id}
+              id={`${id}-panel-${item.id}`}
+              role="tabpanel"
+              aria-labelledby={`${id}-tab-${item.id}`}
+              hidden
+            />
+          ) : null,
+        )}
       </div>
     </section>
   );

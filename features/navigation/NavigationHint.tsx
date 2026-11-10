@@ -9,7 +9,7 @@ const messages: Record<Hint, { desktop: string; mobile: string }> = {
   navigation: {
     desktop: "Use ← and → to go back and forward through your visits.",
     mobile:
-      "Use the back and forward buttons above. Swipe the section tabs to see more.",
+      "Use the arrows above to revisit pages. More opens all sections and apps.",
   },
   project: {
     desktop: "Press ← to return to projects. Press → to revisit this project.",
@@ -45,7 +45,7 @@ export default function NavigationHint({
     const timer = setTimeout(() => setHint(null), 8000);
     return () => clearTimeout(timer);
   }, [hint, active]);
-  if (!active || !hint) return null;
+  if (!active || !hint || hint !== context) return null;
   return (
     <aside className={styles.toast} aria-label="Navigation tip">
       <ArrowLeftRight size={18} aria-hidden="true" />

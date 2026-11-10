@@ -438,3 +438,214 @@ a {
   min-height: 44px;
   font-size: var(--text-small);
 }
+
+:root {
+  --text-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --text-small: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --text-heading: clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem);
+}
+.file-content {
+  container-type: inline-size;
+}
+.document-app h1,
+.project-detail h1,
+.folder-heading h1 {
+  font-size: var(--text-heading);
+}
+.job ul,
+.engineering-card p {
+  max-width: 68ch;
+}
+.mobile-brand,
+.dock-mobile-label {
+  display: none;
+}
+@media (min-width: 760px) {
+  .file-content .document-app h1,
+  .file-content .project-detail h1 {
+    font-size: clamp(1.625rem, 1.35rem + 1.3cqi, 2.125rem);
+  }
+}
+/* Phones use one content surface with direct, labeled navigation. */
+@media (max-width: 759px) {
+  .desktop {
+    background: var(--bg);
+  }
+  .system-bar {
+    background: var(--panel);
+  }
+  .activities {
+    font-size: 14px;
+    gap: 10px;
+  }
+  .activities-label,
+  .system-clock,
+  .workspace-dots,
+  .desktop-label {
+    display: none;
+  }
+  .mobile-brand {
+    display: inline;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .desktop-icons {
+    top: 90px;
+  }
+  .windows-layer {
+    inset: 44px 0 calc(76px + env(safe-area-inset-bottom));
+  }
+  .app-window,
+  .app-window.app-about,
+  .app-window.app-contact,
+  .app-window.app-snake {
+    inset: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .window-bar {
+    background: var(--bg);
+    border-bottom: 0;
+  }
+  .window-app {
+    color: var(--muted);
+  }
+  .file-toolbar {
+    border-top: 1px solid var(--line);
+  }
+  .mobile-file-locations {
+    display: none;
+  }
+  .dock,
+  .desktop-lock-handle {
+    display: none;
+  }
+  .document-app,
+  .project-detail {
+    padding-top: 20px;
+  }
+  .welcome-app {
+    padding-top: 24px;
+  }
+  .overview {
+    background: var(--bg);
+    padding-top: 56px;
+  }
+}
+
+.mobile-menu-backdrop,
+.mobile-menu-chevron {
+  display: none;
+}
+@media (max-width: 759px) {
+  .mobile-menu-backdrop {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 45;
+    background: #0007;
+    cursor: default;
+  }
+  .overview {
+    inset: auto 0 0;
+    max-height: calc(100dvh - 56px);
+    background: var(--bg);
+    color: var(--ink);
+    padding: 28px 20px max(20px, env(safe-area-inset-bottom));
+    border-radius: 20px 20px 0 0;
+    backdrop-filter: none;
+    text-align: left;
+    animation: mobile-menu-enter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .overview h1 {
+    font-size: clamp(1.375rem, 1.2rem + 1vw, 1.625rem);
+    margin: 0 48px 6px 0;
+  }
+  .overview > p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 40px 22px 0;
+  }
+  .overview-close {
+    width: 44px;
+    height: 44px;
+    top: 18px;
+    right: 16px;
+    padding: 0;
+    background: var(--panel);
+    border-radius: 12px;
+  }
+  .launcher-apps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: none;
+    margin: 0;
+  }
+  .launcher-apps button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 58px;
+    gap: 14px;
+    padding: 9px 12px;
+    border-radius: 12px;
+    color: var(--ink);
+    font-size: 1rem;
+    text-align: left;
+  }
+  .launcher-apps button[aria-current="page"] {
+    background: var(--panel);
+    font-weight: 600;
+  }
+  .launcher-apps button:hover,
+  .launcher-apps button:active {
+    background: var(--panel);
+  }
+  .launcher-apps .app-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+  .launcher-apps .app-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .launcher-app-label {
+    flex: 1;
+  }
+  .mobile-menu-chevron {
+    display: block;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .overview .lock-action {
+    touch-action: none;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    margin-top: 16px;
+    border-radius: 12px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+}
+@keyframes mobile-menu-enter {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview {
+    animation: none;
+  }
+}

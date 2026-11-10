@@ -42,6 +42,7 @@ import {
   type FileSection,
 } from "./hooks/usePortfolioNavigation";
 import NavigationHint from "./navigation/NavigationHint";
+import MobileNavigation from "./navigation/MobileNavigation";
 import { AboutEngineering } from "./AboutEngineering";
 import { useSwipeAction } from "./hooks/useSwipeAction";
 
@@ -125,7 +126,14 @@ function AppWindow({
     y: number;
     startX: number;
     startY: number;
+    minX: number;
+    maxX: number;
   } | null>(null);
+  useEffect(() => {
+    const reset = () => setPosition({ x: 0, y: 0 });
+    window.addEventListener("resize", reset);
+    return () => window.removeEventListener("resize", reset);
+  }, []);
   const app = apps.find((a) => a.id === id)!;
   return (
     <section
@@ -152,7 +160,10 @@ function AppWindow({
           )
             return;
           event.currentTarget.setPointerCapture(event.pointerId);
+          const bounds = event.currentTarget.getBoundingClientRect();
           drag.current = {
+            minX: position.x - bounds.left + 8,
+            maxX: position.x + window.innerWidth - bounds.right - 8,
             x: event.clientX,
             y: event.clientY,
             startX: position.x,
@@ -163,9 +174,9 @@ function AppWindow({
           if (!drag.current) return;
           setPosition({
             x: Math.max(
-              -window.innerWidth / 3,
+              drag.current.minX,
               Math.min(
-                window.innerWidth / 3,
+                drag.current.maxX,
                 drag.current.startX + event.clientX - drag.current.x,
               ),
             ),
@@ -240,7 +251,26 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   const [minimized, setMinimized] = useState<AppId[]>([]);
   const [maximized, setMaximized] = useState<AppId[]>([]);
   const [overview, setOverview] = useState(false);
+  const lastSurfaceFocus = useRef<HTMLElement | null>(null);
   const [query, setQuery] = useState("");
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 759px)");
+    const update = () => setCompact(media.matches);
+    const frame = requestAnimationFrame(update);
+    media.addEventListener("change", update);
+    return () => {
+      cancelAnimationFrame(frame);
+      media.removeEventListener("change", update);
+    };
+  }, []);
+  useEffect(() => {
+    if (!overview) return;
+    const previous = lastSurfaceFocus.current;
+    return () => {
+      if (previous instanceof HTMLElement) previous.focus();
+    };
+  }, [overview]);
   const [theme, setTheme] = useState("mint");
   const lock = () => {
     playSound("lock");
@@ -297,7 +327,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   };
   const front = [...open].reverse().find((id) => !minimized.includes(id));
   const hasMaximizedWindow = Boolean(front && maximized.includes(front));
-  const dockHidden = hasMaximizedWindow && !overview;
+  const dockHidden = hasMaximizedWindow && !overview && !compact;
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
       if (
@@ -618,12 +648,19 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   return (
     <main
       className={`desktop ${unlocked ? "is-unlocked" : "is-locked"}`}
+      onFocusCapture={(event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          !event.target.closest(".overview")
+        )
+          lastSurfaceFocus.current = event.target;
+      }}
       onClickCapture={(event) => {
         const target = (event.target as HTMLElement).closest("button,a");
         if (target && !target.hasAttribute("data-sound")) playSound("tap");
       }}
     >
-      <header className="system-bar">
+      <header className="system-bar" inert={overview}>
         <button
           className="activities"
           data-sound={!unlocked ? "unlock" : undefined}
@@ -638,7 +675,8 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             <i />
             <i />
           </span>
-          Activities
+          <span className="activities-label">Activities</span>
+          <span className="mobile-brand">Mudassar Majeed</span>
         </button>
         <button
           className="system-clock"
@@ -698,7 +736,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           <span>MUDASSAR’S WORKSPACE</span>
           <p>Take a look around.</p>
         </div>
-        <div className="desktop-icons">
+        <div className="desktop-icons" inert={overview}>
           {apps
             .filter((a) => ["projects", "experience", "contact"].includes(a.id))
             .map((app) => (
@@ -714,7 +752,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
               </button>
             ))}
         </div>
-        <div className="windows-layer">
+        <div className="windows-layer" inert={overview}>
           {open.map((id) => (
             <AppWindow
               key={id}
@@ -743,14 +781,22 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           className={`dock ${dockHidden ? "is-hidden" : ""}`}
           aria-label="Applications"
           aria-hidden={dockHidden}
-          inert={dockHidden}
+          inert={dockHidden || overview}
         >
           {apps.map((app) => (
             <button
               key={app.id}
               title={app.name}
               aria-label={`Open ${app.name}`}
-              aria-current={front === app.id ? "page" : undefined}
+              aria-current={
+                (
+                  front === "projects"
+                    ? fileSection === app.id
+                    : front === app.id
+                )
+                  ? "page"
+                  : undefined
+              }
               className={open.includes(app.id) ? "running" : ""}
               onClick={() => launch(app.id)}
             >
@@ -758,6 +804,13 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                 <app.icon size={27} strokeWidth={1.7} />
               </span>
               <span className="dock-tooltip">{app.name}</span>
+              <span className="dock-mobile-label">
+                {app.id === "experience"
+                  ? "Work"
+                  : app.id === "about"
+                    ? "About"
+                    : app.name}
+              </span>
             </button>
           ))}
           <span className="dock-separator" />
@@ -767,8 +820,17 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             onClick={() => setOverview(!overview)}
           >
             <Grid3X3 size={26} />
+            <span className="dock-mobile-label">Apps</span>
           </button>
         </nav>
+        <div inert={overview}>
+          <MobileNavigation
+            current={front === "projects" ? fileSection : front}
+            expanded={overview}
+            onNavigate={launch}
+            onMore={() => setOverview(true)}
+          />
+        </div>
         <NavigationHint
           active={unlocked && !overview && Boolean(front) && front !== "snake"}
           context={
@@ -780,6 +842,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           }
         />
         <button
+          inert={overview}
           className="desktop-lock-handle"
           onClick={lock}
           {...lockGesture}
@@ -788,46 +851,101 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           <ArrowUp size={14} />
           <LockKeyhole size={13} /> Swipe up to lock
         </button>
+        {overview && compact && (
+          <button
+            className="mobile-menu-backdrop"
+            tabIndex={-1}
+            aria-label="Close applications"
+            onClick={() => setOverview(false)}
+          />
+        )}
         {overview && (
-          <section className="overview" aria-label="Applications">
+          <section
+            id="portfolio-app-menu"
+            className="overview"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Applications"
+            onKeyDown={(event) => {
+              if (event.key !== "Tab") return;
+              const controls =
+                event.currentTarget.querySelectorAll<HTMLElement>(
+                  "button:not(:disabled),input,a[href]",
+                );
+              const first = controls[0];
+              const last = controls[controls.length - 1];
+              if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last?.focus();
+              }
+              if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first?.focus();
+              }
+            }}
+          >
             <button
               className="overview-close"
               aria-label="Close applications"
               onClick={() => setOverview(false)}
+              autoFocus={compact}
             >
               <X />
             </button>
-            <div className="launcher-search">
-              <Search size={19} />
-              <input
-                autoFocus
-                aria-label="Search applications"
-                placeholder="Type to search…"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </div>
-            <h1>Make yourself at home.</h1>
-            <p>Choose a folder. Discover what’s inside.</p>
+            {!compact && (
+              <div className="launcher-search">
+                <Search size={19} />
+                <input
+                  autoFocus
+                  aria-label="Search applications"
+                  placeholder="Type to search…"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
+            )}
+            <h1>{compact ? "Explore portfolio" : "Make yourself at home."}</h1>
+            <p>
+              {compact
+                ? "Your work, skills, and ways to connect."
+                : "Choose a folder. Discover what’s inside."}
+            </p>
             <div className="launcher-apps">
               {apps
-                .filter((app) =>
-                  app.name.toLowerCase().includes(query.toLowerCase()),
+                .filter(
+                  (app) =>
+                    compact ||
+                    app.name.toLowerCase().includes(query.toLowerCase()),
                 )
                 .map((app) => (
-                  <button key={app.id} onClick={() => launch(app.id)}>
+                  <button
+                    key={app.id}
+                    onClick={() => launch(app.id)}
+                    aria-current={
+                      (
+                        front === "projects"
+                          ? fileSection === app.id
+                          : front === app.id
+                      )
+                        ? "page"
+                        : undefined
+                    }
+                  >
                     <span className={`app-icon ${app.color}`}>
                       <app.icon size={37} />
                     </span>
-                    <span>{app.name}</span>
+                    <span className="launcher-app-label">{app.name}</span>
+                    <ChevronRight className="mobile-menu-chevron" size={17} />
                   </button>
                 ))}
             </div>
-            {!apps.some((app) =>
-              app.name.toLowerCase().includes(query.toLowerCase()),
-            ) && <p>No applications found. Try “Projects” or “Snake”.</p>}
+            {!compact &&
+              !apps.some((app) =>
+                app.name.toLowerCase().includes(query.toLowerCase()),
+              ) && <p>No applications found. Try “Projects” or “Snake”.</p>}
             <button
               className="lock-action"
+              {...lockGesture}
               data-sound="lock"
               onClick={() => {
                 playSound("lock");

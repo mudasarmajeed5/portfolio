@@ -32,7 +32,8 @@
 .value {
   font-size: 46px;
   line-height: 1;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
   font-weight: 600;
   color: var(--ink);
 }
