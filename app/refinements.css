@@ -1,0 +1,428 @@
+/* Shared reading rhythm and controls across the desktop and page view. */
+:root {
+  --space-page: clamp(20px, 4vw, 40px);
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.8125rem;
+  --radius-control: 8px;
+}
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+input {
+  caret-color: var(--accent);
+}
+a {
+  text-underline-offset: 0.2em;
+}
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+p,
+li {
+  overflow-wrap: break-word;
+}
+button,
+a {
+  touch-action: manipulation;
+}
+.desktop {
+  min-height: 320px;
+}
+.system-bar {
+  height: 44px;
+}
+.system-bar button {
+  min-height: 44px;
+}
+.windows-layer {
+  top: 44px;
+}
+.lock-screen {
+  top: 44px;
+}
+.overview {
+  top: 44px;
+}
+.window-bar {
+  min-height: 52px;
+  padding-inline: 16px 8px;
+}
+.window-controls > button {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-control);
+}
+.window-controls > button:hover {
+  background: var(--raised);
+}
+.window-controls > button.close:hover {
+  background: #ae3535;
+  color: #fff;
+}
+.file-toolbar {
+  min-height: 64px;
+  gap: 8px;
+}
+.file-toolbar > button,
+.file-toolbar .crumb {
+  min-width: 40px;
+  min-height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-control);
+  flex-shrink: 0;
+}
+.file-toolbar > button:hover:not(:disabled) {
+  background: var(--raised);
+}
+.file-toolbar > span {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.files-sidebar {
+  padding: 22px 12px;
+}
+.files-sidebar > button {
+  min-height: 44px;
+  font-size: var(--text-small);
+  gap: 10px;
+}
+.file-content {
+  overscroll-behavior: contain;
+}
+.document-app,
+.project-detail {
+  padding: var(--space-page);
+}
+.document-app h1,
+.project-detail h1,
+.folder-heading h1 {
+  font-size: clamp(26px, 3vw, 34px);
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  margin: 0 0 12px;
+}
+.document-app > .muted,
+.project-detail p,
+.job ul {
+  font-size: var(--text-body);
+  line-height: 1.75;
+}
+.project-detail p,
+.project-detail ul {
+  max-width: 70ch;
+}
+.project-detail h2 {
+  font-size: 21px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  letter-spacing: -0.025em;
+}
+.project-detail ul {
+  font-size: var(--text-body);
+  line-height: 1.75;
+}
+.project-source {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  font-size: var(--text-small);
+}
+.folder-heading {
+  padding: 28px 28px 8px;
+  gap: 16px;
+  align-items: flex-start;
+}
+.folder-heading p {
+  font-size: var(--text-small);
+  line-height: 1.6;
+  margin: 0;
+}
+.folder-heading > span {
+  font-size: var(--text-caption);
+  white-space: nowrap;
+  padding-top: 8px;
+}
+.project-grid .file-folder {
+  border-radius: 12px;
+  padding: 24px;
+  gap: 12px;
+  transition: background-color 0.15s ease-out;
+}
+.project-grid .file-folder strong {
+  font-size: 20px;
+  letter-spacing: -0.025em;
+}
+.project-grid .file-folder small {
+  font-size: var(--text-caption);
+}
+.project-grid p {
+  line-height: 1.65;
+}
+.welcome-app {
+  padding: var(--space-page) var(--space-page) 0;
+}
+.welcome-app h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -0.035em;
+}
+.welcome-app h1 > span {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.welcome-app > p {
+  max-width: 60ch;
+  font-size: var(--text-body);
+  line-height: 1.75;
+}
+.welcome-actions {
+  flex-wrap: wrap;
+}
+.welcome-actions > button,
+.welcome-actions > a,
+.contact-app > a.primary {
+  min-height: 44px;
+  font-size: var(--text-small);
+}
+.welcome-footer {
+  margin-inline: calc(-1 * var(--space-page));
+  gap: 16px;
+}
+.engineering-heading h2 {
+  font-size: 27px;
+  letter-spacing: -0.025em;
+  margin-top: 28px;
+}
+.engineering-card h3 {
+  margin-top: 0;
+  font-size: 21px;
+}
+.engineering-card p {
+  font-size: var(--text-body);
+  line-height: 1.75;
+}
+.job {
+  gap: 24px;
+}
+.job h2 {
+  letter-spacing: -0.02em;
+}
+.job time {
+  font-variant-numeric: tabular-nums;
+}
+.skill-chips > span {
+  font-size: var(--text-small);
+}
+.education {
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  padding: 28px 0 0;
+}
+.education p {
+  font-size: var(--text-small);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.contact-app p {
+  font-size: var(--text-body);
+  line-height: 1.75;
+}
+.contact-links {
+  flex-wrap: wrap;
+}
+.contact-links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.wallpaper-grid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+.wallpaper-grid button {
+  min-width: 0;
+  padding: 8px;
+}
+.sound-preference {
+  min-height: 52px;
+  text-align: left;
+}
+.settings-note {
+  line-height: 1.7;
+}
+.full-preview {
+  width: 100%;
+  padding-inline: var(--space-page);
+}
+.full-preview section[id] {
+  scroll-margin-top: 28px;
+}
+.preview-nav {
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+.preview-nav nav {
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.preview-nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.preview-intro {
+  padding-block: clamp(40px, 7vw, 80px);
+}
+.preview-intro h1 {
+  letter-spacing: -0.035em;
+}
+.preview-intro > p {
+  font-size: 17px;
+  line-height: 1.75;
+}
+.project-index a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
+}
+@media (min-width: 760px) {
+  .app-window:not(.maximized) {
+    left: 50%;
+  }
+}
+@media (max-width: 1050px) and (min-width: 760px) {
+  .app-window:not(.maximized) {
+    width: calc(100vw - 64px);
+  }
+}
+@media (max-width: 759px) {
+  .windows-layer {
+    inset: 44px 0 calc(104px + env(safe-area-inset-bottom));
+  }
+  .app-window,
+  .app-window.app-about,
+  .app-window.app-contact,
+  .app-window.app-snake {
+    inset: 8px 8px 0;
+  }
+  .has-maximized-window .windows-layer {
+    bottom: 0;
+  }
+  .window-bar {
+    height: 52px;
+    padding-inline: 12px 4px;
+  }
+  .window-controls > button {
+    width: 44px;
+    height: 44px;
+  }
+  .file-toolbar {
+    padding: 8px 12px;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .file-toolbar > button,
+  .file-toolbar .crumb {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .file-toolbar > .preview-link {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+  .file-toolbar > .preview-link span {
+    display: none;
+  }
+  .file-toolbar > span {
+    font-size: var(--text-caption);
+  }
+  .mobile-file-locations {
+    padding: 6px 12px;
+    gap: 4px;
+    scrollbar-width: thin;
+    scroll-padding-inline: 12px;
+  }
+  .mobile-file-locations button {
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: var(--text-small);
+  }
+  .dock {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: calc(100vw - 16px);
+    scrollbar-width: none;
+    bottom: calc(30px + env(safe-area-inset-bottom));
+  }
+  .dock > button,
+  .dock > button:last-child {
+    width: 44px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  .dock-separator {
+    flex-shrink: 0;
+  }
+  .desktop-lock-handle {
+    bottom: env(safe-area-inset-bottom);
+    min-height: 30px;
+  }
+  .folder-heading {
+    padding: 24px 20px 8px;
+  }
+  .project-grid {
+    padding: 16px 20px 24px;
+  }
+  .project-grid .file-folder {
+    padding: 20px;
+  }
+  .welcome-actions {
+    align-items: stretch;
+  }
+  .welcome-footer {
+    padding-inline: 20px;
+  }
+  .job {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .overview {
+    padding-inline: 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .launcher-search {
+    width: 100%;
+  }
+  .lock-screen {
+    padding: 20px;
+  }
+  .lock-profile {
+    max-width: 100%;
+  }
+}
+@media (max-width: 420px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  .folder-heading {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .file-home .folder-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-grid .file-folder {
+    transition: none;
+  }
+}

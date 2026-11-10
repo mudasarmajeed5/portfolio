@@ -5,7 +5,6 @@ export function AboutEngineering() {
     <div className="engineering-profile">
       <ExperienceOverview />
       <div className="engineering-heading">
-        <span className="eyebrow">BUILD · INTEGRATE · OPERATE</span>
         <h2>Beyond the interface.</h2>
         <p>
           I build AI-native applications and backend systems, then work with the
@@ -14,7 +13,6 @@ export function AboutEngineering() {
       </div>
       <div className="engineering-grid">
         <section className="engineering-card">
-          <span className="eyebrow">PRODUCT ENGINEERING</span>
           <h3>From workflow to working system</h3>
           <p>
             TypeScript, Node.js, Next.js, and PostgreSQL. Authenticated APIs,
@@ -27,7 +25,6 @@ export function AboutEngineering() {
           </p>
         </section>
         <section className="engineering-card">
-          <span className="eyebrow">AI ENGINEERING</span>
           <h3>AI inside the workflow</h3>
           <p>
             AI-native products, agent harnesses, tool integration, LLM routing,
@@ -40,7 +37,6 @@ export function AboutEngineering() {
           </p>
         </section>
         <section className="engineering-card homelab-card">
-          <span className="eyebrow">PERSONAL INFRASTRUCTURE</span>
           <h3>I run my own NAS and Linux server.</h3>
           <p>
             I self-host Jellyfin, Nextcloud, and Immich, and manage the services
@@ -72,7 +68,6 @@ export function ExperienceOverview() {
       className={styles.overview}
       aria-label="Combined development experience"
     >
-      <span className="eyebrow">EXPERIENCE</span>
       <figure className={styles.figure}>
         <div
           className={styles.ring}
@@ -103,10 +98,6 @@ export function ExperienceOverview() {
           </ul>
         </figcaption>
       </figure>
-      <p className={styles.note}>
-        Combined experience, rounded to one decimal. Employment overlaps counted
-        once; freelance work may overlap employment.
-      </p>
     </section>
   );
 }

@@ -32,9 +32,6 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
         </nav>
       </header>
       <section id="about" className="preview-intro">
-        <span className="eyebrow">
-          FULL-STACK & BACKEND DEVELOPER · PAKISTAN
-        </span>
         <h1>
           Mudassar Majeed
           <span>
@@ -62,7 +59,6 @@ export default function FullPagePreview({ projects }: { projects: Project[] }) {
         <ExperienceContent />
       </section>
       <section id="projects" className="preview-projects">
-        <span className="eyebrow">SELECTED WORK</span>
         <h2>Projects</h2>
         <nav className="project-index" aria-label="Project index">
           {projects.map((project) => (

@@ -18,7 +18,8 @@
   border: 1px solid var(--line);
   border-radius: 7px;
   padding: 9px 11px;
-  font-size: 12px;
+  font-size: 13px;
+  min-height: 44px;
   white-space: nowrap;
 }
 .canvas {
@@ -87,7 +88,7 @@
   height: 40px;
   display: grid;
   place-items: center;
-  color: var(--branch);
+  color: color-mix(in srgb, var(--branch) 60%, var(--ink));
   border: 1px solid color-mix(in srgb, var(--branch) 30%, transparent);
   border-radius: 9px;
   background: color-mix(in srgb, var(--branch) 8%, var(--bg));

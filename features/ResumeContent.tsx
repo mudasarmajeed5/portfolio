@@ -37,7 +37,6 @@ export function ProjectDocument({ project }: { project: Project }) {
           title={project.title}
         />
       )}
-      <span className="eyebrow">{project.kind}</span>
       <h1>{project.title}</h1>
       <p>{project.text}</p>
       {project.repository && (
@@ -125,7 +124,6 @@ export function ExperienceContent() {
   ];
   return (
     <article className="document-app">
-      <span className="eyebrow">WORK HISTORY</span>
       <h1>Experience</h1>
       <p className="muted">
         Frontend delivery, backend APIs, and full-stack product development.
@@ -154,7 +152,6 @@ export function ExperienceContent() {
 export function SkillsContent() {
   return (
     <article className="document-app">
-      <span className="eyebrow">MY TOOLBOX</span>
       <h1>Skills & education</h1>
       <p className="muted">
         Four connected disciplines, from interface to infrastructure.
@@ -173,7 +170,6 @@ export function ContactContent() {
       <div className="contact-icon">
         <Mail size={36} />
       </div>
-      <span className="eyebrow">LET’S BUILD SOMETHING USEFUL</span>
       <h1>Say hello.</h1>
       <p>
         Have a project in mind or an opportunity to share?

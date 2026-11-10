@@ -12,6 +12,7 @@ import {
 import { useDesktopSound } from "./hooks/useDesktopSound";
 import {
   ArrowLeft,
+  ArrowRight,
   ArrowUp,
   BatteryFull,
   Building2 as BriefcaseBusiness,
@@ -36,6 +37,11 @@ import {
   X,
 } from "lucide-react";
 import Snake from "./Snake";
+import {
+  usePortfolioNavigation,
+  type FileSection,
+} from "./hooks/usePortfolioNavigation";
+import NavigationHint from "./navigation/NavigationHint";
 import { AboutEngineering } from "./AboutEngineering";
 import { useSwipeAction } from "./hooks/useSwipeAction";
 
@@ -215,9 +221,11 @@ function AppWindow({
 export default function Portfolio({ projects }: { projects: Project[] }) {
   const [unlocked, setUnlocked] = useState(false);
   const [open, setOpen] = useState<AppId[]>(["projects"]);
-  const [fileSection, setFileSection] = useState<
-    "home" | "about" | "projects" | "experience" | "skills" | "contact"
-  >("about");
+  const { location, navigate, back, forward, canBack, canForward } =
+    usePortfolioNavigation();
+  const fileSection = location.section;
+  const selected =
+    projects.find((project) => project.slug === location.projectSlug) || null;
   const {
     enabled: soundEnabled,
     play: playSound,
@@ -234,7 +242,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
   const [overview, setOverview] = useState(false);
   const [query, setQuery] = useState("");
   const [theme, setTheme] = useState("mint");
-  const [selected, setSelected] = useState<Project | null>(null);
   const lock = () => {
     playSound("lock");
     setUnlocked(false);
@@ -282,8 +289,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     ].includes(id);
     const windowId = location ? "projects" : id;
     if (location) {
-      setFileSection(id as typeof fileSection);
-      setSelected(null);
+      navigate(id as FileSection);
     }
     focus(windowId);
     setMinimized((current) => current.filter((item) => item !== windowId));
@@ -310,6 +316,37 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   }, [unlocked, playSound]);
+  useEffect(() => {
+    const handleNavigation = (event: KeyboardEvent) => {
+      if (
+        !unlocked ||
+        overview ||
+        front !== "projects" ||
+        event.defaultPrevented ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey
+      )
+        return;
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.closest(
+          'input,textarea,select,[contenteditable="true"],[role="slider"],[role="tablist"]',
+        )
+      )
+        return;
+      if (event.key === "ArrowLeft" && canBack) {
+        event.preventDefault();
+        back();
+      }
+      if (event.key === "ArrowRight" && canForward) {
+        event.preventDefault();
+        forward();
+      }
+    };
+    window.addEventListener("keydown", handleNavigation);
+    return () => window.removeEventListener("keydown", handleNavigation);
+  }, [unlocked, overview, front, canBack, canForward, back, forward]);
   const content = (id: AppId) => {
     if (id === "projects")
       return (
@@ -319,8 +356,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             <button
               className={fileSection === "home" ? "selected" : ""}
               onClick={() => {
-                setFileSection("home");
-                setSelected(null);
+                navigate("home");
               }}
             >
               <Home size={17} /> Home
@@ -341,8 +377,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                   className={fileSection === app.id ? "selected" : ""}
                   aria-current={fileSection === app.id ? "page" : undefined}
                   onClick={() => {
-                    setFileSection(app.id as typeof fileSection);
-                    setSelected(null);
+                    navigate(app.id as FileSection);
                   }}
                 >
                   <app.icon size={17} />
@@ -360,20 +395,25 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             <div className="file-toolbar">
               <button
                 aria-label="Go back"
-                disabled={fileSection === "home"}
-                onClick={() => {
-                  if (selected) setSelected(null);
-                  else setFileSection("home");
-                }}
+                disabled={!canBack}
+                onClick={back}
+                title="Back (←)"
               >
                 <ArrowLeft size={18} />
+              </button>
+              <button
+                aria-label="Go forward"
+                title="Forward (→)"
+                disabled={!canForward}
+                onClick={forward}
+              >
+                <ArrowRight size={18} />
               </button>
               <span>
                 <button
                   className="crumb"
                   onClick={() => {
-                    setFileSection("home");
-                    setSelected(null);
+                    navigate("home");
                   }}
                   aria-label="Home"
                 >
@@ -414,8 +454,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                   key={section}
                   aria-current={fileSection === section ? "page" : undefined}
                   onClick={() => {
-                    setFileSection(section as typeof fileSection);
-                    setSelected(null);
+                    navigate(section as FileSection);
                   }}
                 >
                   {section === "home"
@@ -477,7 +516,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
                     <button
                       className="file-folder"
                       key={p.title}
-                      onClick={() => setSelected(p)}
+                      onClick={() => navigate("projects", p.slug)}
                     >
                       <span className="folder-art">
                         <Folder size={63} strokeWidth={1.25} />
@@ -506,7 +545,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
           <div className="avatar-mark">
             m<span>.</span>
           </div>
-          <span className="eyebrow">FULL-STACK & BACKEND DEVELOPMENT</span>
           <h1>
             Mudassar Majeed<span>Full-stack & backend developer.</span>
           </h1>
@@ -542,7 +580,6 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
     if (id === "settings")
       return (
         <article className="document-app">
-          <span className="eyebrow">MAKE YOURSELF AT HOME</span>
           <h1>Appearance</h1>
           <p className="muted">A wallpaper, a palette, a whole new mood.</p>
           <div className="wallpaper-grid">
@@ -732,6 +769,16 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
             <Grid3X3 size={26} />
           </button>
         </nav>
+        <NavigationHint
+          active={unlocked && !overview && Boolean(front) && front !== "snake"}
+          context={
+            front !== "projects"
+              ? "window"
+              : selected
+                ? "project"
+                : "navigation"
+          }
+        />
         <button
           className="desktop-lock-handle"
           onClick={lock}
