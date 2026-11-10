@@ -1,5 +1,6 @@
 ---
 title: Construction AI
+liveUrl: https://app.fulltakeoff.com
 category: Construction · AI workflows
 description: Turns construction plans into reviewable quantities, cost estimates, and progress-linked billing.
 technologies: TypeScript · Node.js · Express · PostgreSQL · Drizzle ORM · Gemini · Next.js

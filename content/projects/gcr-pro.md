@@ -1,6 +1,7 @@
 ---
 title: GCR Pro
 repository: https://github.com/mudasarmajeed5/gcr-pro
+liveUrl: https://gcr-pro.vercel.app
 category: Education · Google integrations
 description: Brings Google Classroom courses, deadlines, study assistance, and instructor communication into one workspace.
 technologies: Next.js · React · TypeScript · MongoDB · Mongoose · NextAuth.js · Gemini

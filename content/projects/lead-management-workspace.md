@@ -1,5 +1,6 @@
 ---
 title: LeadPulse
+liveUrl: https://nescon.vercel.app
 category: AI-native · Lead management
 description: An AI-native CRM that keeps every lead accountable, from first WhatsApp message to follow-up, payment, and appointment.
 technologies: Next.js · TypeScript · PostgreSQL · Drizzle ORM · Better Auth · Inngest · Gemini · OpenRouter

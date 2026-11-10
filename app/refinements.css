@@ -426,3 +426,15 @@ a {
     transition: none;
   }
 }
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin: 20px 0;
+}
+.project-actions .primary {
+  min-height: 44px;
+  font-size: var(--text-small);
+}

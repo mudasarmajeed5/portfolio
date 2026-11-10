@@ -1,6 +1,7 @@
 ---
 title: Slack Clone
 repository: https://github.com/mudasarmajeed5/slack-cwa
+liveUrl: https://slac-cwa.vercel.app
 category: Real-time collaboration
 description: A team chat app with shared workspaces, channels, direct messages, and threaded conversations.
 technologies: Next.js · React · TypeScript · Convex · Convex Auth · Tailwind CSS

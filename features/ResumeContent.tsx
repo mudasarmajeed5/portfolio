@@ -39,16 +39,29 @@ export function ProjectDocument({ project }: { project: Project }) {
       )}
       <h1>{project.title}</h1>
       <p>{project.text}</p>
-      {project.repository && (
-        <a
-          className="project-source"
-          href={project.repository}
-          target="_blank"
-          rel="noreferrer"
-        >
-          View source on GitHub ↗
-        </a>
-      )}
+      <div className="project-actions">
+        {project.liveUrl && (
+          <a
+            className="primary"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${project.title} live app (opens in a new tab)`}
+          >
+            Visit live app ↗
+          </a>
+        )}
+        {project.repository && (
+          <a
+            className="project-source"
+            href={project.repository}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View source on GitHub ↗
+          </a>
+        )}
+      </div>
       <div className="skill-chips">
         {project.tech.split("·").map((t) => (
           <span key={t}>{t.trim()}</span>

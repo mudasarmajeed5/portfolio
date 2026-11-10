@@ -9,6 +9,7 @@ export type Project = {
   tech: string;
   image?: string;
   repository?: string;
+  liveUrl?: string;
   body: string;
 };
 
@@ -49,6 +50,7 @@ export async function getProjects(): Promise<Project[]> {
         tech: fields.technologies || "",
         image: fields.image,
         repository: fields.repository,
+        liveUrl: fields.liveUrl,
         body,
       };
     }),
