@@ -1,0 +1,243 @@
+/* Pixel-inspired Material surfaces. Desktop tokens and chrome remain unchanged. */
+.mobile-read-link {
+  display: none;
+}
+@media (max-width: 759px) {
+  :root {
+    --bg: #141b18;
+    --panel: #1e2822;
+    --raised: #2b3930;
+    --ink: #e3ece4;
+    --muted: #b1bfb5;
+    --line: #c7dbce22;
+    --accent: #a9d5b3;
+    --accent-ink: #143820;
+    --space-page: 20px;
+  }
+  :root[data-theme="green"] {
+    --bg: #f4f8f0;
+    --panel: #e8efe3;
+    --raised: #d7e7d2;
+    --ink: #1b2b1e;
+    --muted: #526454;
+    --line: #334e3522;
+    --accent: #376a40;
+    --accent-ink: #fff;
+  }
+  :root[data-theme="blue"] {
+    --bg: #f5f7fc;
+    --panel: #e8edf6;
+    --raised: #d6e3f5;
+    --ink: #1b2a3e;
+    --muted: #50617a;
+    --line: #304b7022;
+    --accent: #315f96;
+    --accent-ink: #fff;
+  }
+  .desktop > .system-bar,
+  .desktop .window-bar,
+  .desktop .file-toolbar {
+    display: none;
+  }
+  .desktop .windows-layer {
+    inset: calc(56px + env(safe-area-inset-top)) 0
+      calc(76px + env(safe-area-inset-bottom));
+  }
+  .desktop .windows-layer .app-window {
+    inset: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .desktop .window-body {
+    height: 100%;
+  }
+  .desktop .lock-screen {
+    inset: 0;
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .lock-screen > p,
+  .lock-profile > span:not(.lock-avatar) {
+    color: var(--muted);
+  }
+  .lock-read-link {
+    color: var(--accent);
+  }
+  .lock-avatar {
+    color: var(--accent);
+    background: var(--raised);
+    border: 0;
+  }
+  .files-app,
+  .file-content {
+    height: 100%;
+  }
+  .document-app,
+  .project-detail {
+    padding: 20px;
+  }
+  .document-app h1,
+  .project-detail h1 {
+    font-size: clamp(1.625rem, 1.45rem + 0.8vw, 1.875rem);
+    letter-spacing: -0.025em;
+  }
+  .document-app > .muted {
+    margin-top: 0;
+  }
+  .welcome-app {
+    padding: 20px 20px 0;
+  }
+  .welcome-app .avatar-mark {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 22px;
+    font-size: 38px;
+    box-shadow: none;
+  }
+  .welcome-app h1 {
+    font-size: 28px;
+    margin-bottom: 16px;
+  }
+  .welcome-app h1 > span {
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  .welcome-actions {
+    margin: 20px 0 24px;
+    gap: 8px;
+  }
+  .welcome-actions > button,
+  .welcome-actions > a {
+    border-radius: 24px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  .welcome-actions .preview-link {
+    display: none;
+  }
+  .engineering-profile {
+    padding-top: 12px;
+  }
+  .engineering-heading h2 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  .engineering-grid {
+    margin-top: 20px;
+    gap: 0;
+  }
+  .engineering-card {
+    padding: 20px 0;
+  }
+  .engineering-card h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .engineering-card p {
+    margin-block: 12px;
+  }
+  .folder-heading {
+    padding: 20px 20px 4px;
+  }
+  .folder-heading h1 {
+    margin-bottom: 8px;
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 20px 24px;
+    gap: 12px;
+  }
+  .project-grid .file-folder {
+    background: var(--panel);
+    border: 0;
+    border-radius: 24px;
+    padding: 20px;
+    gap: 10px;
+  }
+  .project-grid .folder-art {
+    display: none;
+  }
+  .project-grid .file-folder strong {
+    font-size: 21px;
+  }
+  .project-grid .file-folder small {
+    color: var(--muted);
+  }
+  .project-grid .card-open {
+    padding-top: 6px;
+    font-size: 14px;
+  }
+  .project-actions .primary {
+    border-radius: 24px;
+  }
+  .skill-chips {
+    gap: 6px;
+    margin-block: 16px 20px;
+  }
+  .skill-chips > span {
+    font-size: 13px;
+    padding: 7px 10px;
+    border-radius: 10px;
+  }
+  .experience-list {
+    margin-top: 24px;
+  }
+  .job {
+    padding-block: 22px;
+  }
+  .job h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .job ul {
+    margin-top: 12px;
+  }
+  .contact-app {
+    padding-top: 28px;
+  }
+  .contact-icon {
+    background: var(--panel);
+    border-radius: 28px;
+  }
+  .contact-app > a.primary {
+    border-radius: 28px;
+  }
+  .overview {
+    border-radius: 28px 28px 0 0;
+    padding-top: 30px;
+    max-height: calc(100dvh - 40px - env(safe-area-inset-top));
+  }
+  .overview-close {
+    border-radius: 50%;
+  }
+  .launcher-apps button {
+    border-radius: 18px;
+  }
+  .mobile-read-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 12px;
+    margin-top: 12px;
+    color: var(--ink);
+    font-size: 14px;
+    text-decoration: none;
+    border-top: 1px solid var(--line);
+  }
+  .mobile-read-link > svg:last-child {
+    margin-left: auto;
+  }
+  .desktop .overview .lock-action {
+    border-radius: 24px;
+    min-height: 48px;
+    margin-top: 8px;
+  }
+}
+@media (max-width: 759px) and (max-height: 500px) {
+  .desktop .windows-layer {
+    bottom: calc(64px + env(safe-area-inset-bottom));
+  }
+}

@@ -43,6 +43,7 @@ import {
 } from "./hooks/usePortfolioNavigation";
 import NavigationHint from "./navigation/NavigationHint";
 import MobileNavigation from "./navigation/MobileNavigation";
+import MobileAppBar from "./navigation/MobileAppBar";
 import { AboutEngineering } from "./AboutEngineering";
 import { useSwipeAction } from "./hooks/useSwipeAction";
 
@@ -732,6 +733,27 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
         inert={!unlocked}
         aria-hidden={!unlocked}
       >
+        <div inert={overview}>
+          <MobileAppBar
+            title={
+              front === "projects"
+                ? selected?.title ||
+                  (fileSection === "home"
+                    ? "Portfolio"
+                    : apps.find((app) => app.id === fileSection)?.name ||
+                      "Portfolio")
+                : apps.find((app) => app.id === front)?.name || "Portfolio"
+            }
+            canBack={front === "projects" ? canBack : Boolean(front)}
+            canForward={front === "projects" && canForward}
+            onBack={() => {
+              if (front === "projects") back();
+              else launch(fileSection === "home" ? "about" : fileSection);
+            }}
+            onForward={forward}
+            onMenu={() => setOverview(true)}
+          />
+        </div>
         <div className="desktop-label">
           <span>MUDASSAR’S WORKSPACE</span>
           <p>Take a look around.</p>
@@ -943,6 +965,17 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
               !apps.some((app) =>
                 app.name.toLowerCase().includes(query.toLowerCase()),
               ) && <p>No applications found. Try “Projects” or “Snake”.</p>}
+            {compact && (
+              <Link
+                className="mobile-read-link"
+                href={`/preview#${selected?.slug || fileSection}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ScanEye size={18} /> Read portfolio as a page{" "}
+                <ChevronRight size={17} />
+              </Link>
+            )}
             <button
               className="lock-action"
               {...lockGesture}

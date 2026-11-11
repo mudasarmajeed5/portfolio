@@ -88,3 +88,54 @@
     flex-basis: 100%;
   }
 }
+
+@media (max-width: 759px) {
+  .overview {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+  }
+  .figure {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+    margin: 20px 0;
+  }
+  .ring {
+    width: 112px;
+    height: 112px;
+    padding: 9px;
+    margin: 0;
+  }
+  .value {
+    font-size: 34px;
+  }
+  .legend h2 {
+    font-size: 19px;
+    margin-bottom: 14px;
+  }
+  .legend ul {
+    gap: 12px;
+  }
+  .legend li {
+    font-size: 13px;
+    gap: 7px;
+  }
+  .legend strong {
+    font-size: 12px;
+  }
+}
+@media (max-width: 350px) {
+  .figure {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .ring {
+    width: 88px;
+    height: 88px;
+    padding: 7px;
+  }
+  .value {
+    font-size: 29px;
+  }
+}

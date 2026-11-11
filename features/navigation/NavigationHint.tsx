@@ -9,7 +9,7 @@ const messages: Record<Hint, { desktop: string; mobile: string }> = {
   navigation: {
     desktop: "Use ← and → to go back and forward through your visits.",
     mobile:
-      "Use the arrows above to revisit pages. More opens all sections and apps.",
+      "Use the header arrows to revisit pages. More opens all sections and apps.",
   },
   project: {
     desktop: "Press ← to return to projects. Press → to revisit this project.",
